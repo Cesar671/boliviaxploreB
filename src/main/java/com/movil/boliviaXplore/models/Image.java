@@ -1,7 +1,5 @@
 package com.movil.boliviaXplore.models;
 
-import org.hibernate.annotations.ManyToAny;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,10 +19,41 @@ public class Image {
     private long codImagen;
 
     @Column(length = 200)
+    private String nameImage;
+
+    @Column(length = 200)
     private String urlImagen;
+    
+    private String imageId;
 
     @ManyToOne
     @JoinColumn(nullable = false)
     private Event codEvento;
 
+    public Image(String nameImage, String urlImagen, String imageId, Event evento){
+        this.nameImage = nameImage;
+        this.urlImagen = urlImagen;
+        this.imageId = imageId;
+        this.codEvento = evento;
+    }
+
+    public long getCodImagen(){
+        return this.codImagen;
+    }
+
+    public String getNameImage(){
+        return this.nameImage;
+    }
+
+    public String getUrlImagen(){
+        return this.urlImagen;
+    }
+
+    public String getImageId(){
+        return this.imageId;
+    }
+
+    public Event getCodEvento(){
+        return this.codEvento;
+    }
 }

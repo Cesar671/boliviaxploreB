@@ -19,7 +19,11 @@ public class Category {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long idTipoEvento;
     @Column(unique = true, nullable = false, length = 50)
-    private String nombreEvento;
+    private String nombreCategoria;
     @OneToMany(mappedBy = "idTipoEvento", cascade = CascadeType.ALL)
     private List<Event> events;
+
+    public void setNombreCategoria(String nombre){
+        this.nombreCategoria = nombre;
+    }
 }
