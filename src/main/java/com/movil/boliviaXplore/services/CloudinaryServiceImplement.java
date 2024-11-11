@@ -30,14 +30,10 @@ public class CloudinaryServiceImplement implements CloudinaryService {
     public Map upload(MultipartFile multipartFile){
         try{
         File file = convert(multipartFile);
-        System.out.println("antes de entrar 12");
         Map result = this.cloundinary.uploader().upload(multipartFile.getBytes(), ObjectUtils.emptyMap());
-        System.out.println("antes de entrar 13");
         if (!Files.deleteIfExists(file.toPath())) {
-            System.out.println("antes de entrar 14");
             throw new IOException("Failed to delete temporary file");
         }
-        System.out.println("antes de entrar 15");
         return result;
         } catch(Exception e){
             System.out.println(e.getMessage());

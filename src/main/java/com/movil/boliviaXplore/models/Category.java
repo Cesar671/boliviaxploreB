@@ -11,6 +11,8 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Data
 @Entity
 @Table(name = "TipoEvento")
@@ -21,9 +23,14 @@ public class Category {
     @Column(unique = true, nullable = false, length = 50)
     private String nombreCategoria;
     @OneToMany(mappedBy = "idTipoEvento", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Event> events;
 
     public void setNombreCategoria(String nombre){
         this.nombreCategoria = nombre;
+    }
+
+    public List<Event> getEvents(){
+        return this.events;
     }
 }

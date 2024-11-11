@@ -15,6 +15,10 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Data
 @Entity
 @Table(name = "tbl-evento")
@@ -36,18 +40,32 @@ public class Event {
     private String icon;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(nullable = false)
     private Category idTipoEvento; 
 
     @OneToMany(mappedBy = "codEvento", cascade = CascadeType.ALL)
     private List<Image> imagenes;
 
+    public Category getIdTipoEvento(){
+        return this.idTipoEvento;
+    }
+
     public long getCodEvento(){
         return this.codEvento;
     }
 
+    public void setCategory(Category cat){
+        this.idTipoEvento = cat;
+    }
+
     public String getNombreEvento(){
         return this.nombreEvento;
+    }
+
+    @JsonManagedReference
+    public List<Image> getImagenes(){
+        return this.imagenes;
     }
 
     public void setNombreEvento(String nombreEvento){

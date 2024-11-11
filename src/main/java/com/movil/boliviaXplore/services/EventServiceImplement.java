@@ -18,12 +18,14 @@ public class EventServiceImplement implements EventService {
     }
 
     @Override
-    public Event saveEvent(Event event, MultipartFile multipartFile) throws IOException{
+    public Event saveEvent(Event event, MultipartFile multipartFile){
         Event addedEvent = null;
+        try{
         if(multipartFile != null && !multipartFile.isEmpty()){
+            System.out.println(event.getIdTipoEvento());
             addedEvent = this.eventRepository.save(event);
             this.imageService.uploadImage(multipartFile, addedEvent);
-        }
+        }} catch (Exception e){ System.out.println(e.getMessage()); }
         return addedEvent;
     }
 

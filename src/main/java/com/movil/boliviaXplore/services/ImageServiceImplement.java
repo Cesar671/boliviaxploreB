@@ -20,9 +20,7 @@ public class ImageServiceImplement implements ImageService {
    
     @Override
     public Image uploadImage(MultipartFile file, Event event) throws IOException{
-        System.out.println("antes de entrar 1");
         Map uploadResult = this.cloudinaryService.upload(file);
-        System.out.println("antes de entrar 2");
         String imageUrl = (String) uploadResult.get("url");
         String imageId = (String) uploadResult.get("public_id");
         Image image = new Image(file.getOriginalFilename(), imageUrl, imageId, event);

@@ -1,5 +1,7 @@
 package com.movil.boliviaXplore.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,9 +11,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "imagen")
 public class Image {
     @Id
@@ -28,13 +32,14 @@ public class Image {
 
     @ManyToOne
     @JoinColumn(nullable = false)
+    @JsonBackReference
     private Event codEvento;
 
-    public Image(String nameImage, String urlImagen, String imageId, Event evento){
+    public Image(String nameImage, String urlImagen, String imageId, Event codEvento){
         this.nameImage = nameImage;
         this.urlImagen = urlImagen;
         this.imageId = imageId;
-        this.codEvento = evento;
+        this.codEvento = codEvento;
     }
 
     public long getCodImagen(){
