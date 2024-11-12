@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.movil.boliviaXplore.models.Category;
 import com.movil.boliviaXplore.repository.CategoryRepository;
 import java.util.Optional;
+import java.util.List;
 
 @Service
 public class CategoryServiceImplement implements CategoryService{
@@ -16,7 +17,11 @@ public class CategoryServiceImplement implements CategoryService{
 
     @Override
     public Optional<Category> getEventsByCategory(long id){
-        Optional<Category> category = this.categoryRepository.findById(id);
         return this.categoryRepository.findById(id);
+    }
+
+    @Override
+    public List<Category> getAllCategories(){
+        return this.categoryRepository.findAll();
     }
 }
