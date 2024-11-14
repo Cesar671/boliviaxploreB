@@ -39,14 +39,15 @@ public class Event {
     private String icon;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("referenceA")
     @JoinColumn(nullable = false)
     private Category idTipoEvento; 
 
     @OneToMany(mappedBy = "codEvento", cascade = CascadeType.ALL)
+    @JsonManagedReference("referenceC")
     private List<Image> imagenes;
 
-    @JsonBackReference
+    @JsonManagedReference("referenceB")
     @OneToMany(mappedBy = "codEvento", cascade = CascadeType.ALL)
     private List<Favorite> idFavorite;
 

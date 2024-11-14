@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
+import java.util.Optional;
 import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.repository.EventRepository;
 
@@ -27,6 +27,11 @@ public class EventServiceImplement implements EventService {
             this.imageService.uploadImage(multipartFile, addedEvent);
         }} catch (Exception e){ System.out.println(e.getMessage()); }
         return addedEvent;
+    }
+
+    @Override
+    public Optional<Event> getEvent(Long id){
+        return this.eventRepository.findById(id);
     }
 
     @Override

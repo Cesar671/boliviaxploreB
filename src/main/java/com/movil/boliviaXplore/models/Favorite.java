@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.GenerationType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -26,11 +27,11 @@ public class Favorite {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    @JsonManagedReference
+    @JsonBackReference("referenceB")
     private Event codEvento;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference("referenceUserA")
     @JoinColumn(nullable = false)
     private User codUsuario;
 }

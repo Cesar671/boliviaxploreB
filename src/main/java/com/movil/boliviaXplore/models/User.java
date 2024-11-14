@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Data
@@ -23,6 +24,6 @@ public class User {
     private long codUsuario;
 
     @OneToMany(mappedBy = "codUsuario", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference("referenceUserA")
     private List<Favorite> idFavorite;
 }

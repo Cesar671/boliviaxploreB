@@ -32,7 +32,7 @@ public class Image {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    @JsonBackReference
+    @JsonBackReference("referenceC")
     private Event codEvento;
 
     public Image(String nameImage, String urlImagen, String imageId, Event codEvento){
