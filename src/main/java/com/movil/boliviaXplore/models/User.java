@@ -1,6 +1,7 @@
 package com.movil.boliviaXplore.models;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codUsuario")
     private Long codUsuario;
 
     @OneToMany(mappedBy = "codUsuario", cascade = CascadeType.ALL)

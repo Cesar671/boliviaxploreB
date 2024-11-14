@@ -20,18 +20,20 @@ import lombok.NoArgsConstructor;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codImagen")
     private long codImagen;
 
-    @Column(length = 200)
+    @Column(name = "nameImagen", length = 200)
     private String nameImage;
 
-    @Column(length = 200)
+    @Column(name = "urlImagen",length = 200)
     private String urlImagen;
     
+    @Column(name="imageId")
     private String imageId;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "codEvento", nullable = false)
     @JsonBackReference("referenceC")
     private Event codEvento;
 

@@ -38,7 +38,7 @@ public class DataEventLoader implements ApplicationRunner {
                 event.setFechaInicioEvento(new Date());
                 event.setFechaFinEvento(new Date());
 
-                Category randomCategory = categories.get(new Random().nextInt(categories.size()-1));  
+                Category randomCategory = categories.get(3);  
                 event.setCategory(randomCategory);
 
                 this.eventRepository.save(event);  

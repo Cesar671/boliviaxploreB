@@ -24,23 +24,33 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codEvento")
     private Long codEvento;
-    @Column(length = 50)
+
+    @Column(name = "nombreEvento", length = 50)
     private String nombreEvento;
-    @Column(length = 100)
+
+    @Column(name = "descripcionEvento", length = 100)
     private String descripcionEvento;
-    @Column(length = 50)
+
+    @Column(name = "ubicacion", length = 50)
     private String ubicacion;
-    @Column(length = 100)
+
+    @Column(name = "historiaEvento", length = 100)
     private String historiaEvento;
+
+    @Column(name = "fechaInicioEvento")
     private Date fechaInicioEvento;
+
+    @Column(name = "fechaFinEvento")
     private Date fechaFinEvento;
-    @Column(length = 200)
+
+    @Column(name = "icon", length = 200)
     private String icon;
 
     @ManyToOne
     @JsonBackReference("referenceA")
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "idTipoEvento", nullable = false)
     private Category idTipoEvento; 
 
     @OneToMany(mappedBy = "codEvento", cascade = CascadeType.ALL)

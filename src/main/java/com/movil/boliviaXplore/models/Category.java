@@ -19,8 +19,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Category {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Column(name = "codTipoEvento")
     private long idTipoEvento;
-    @Column(unique = true, length = 50)
+    @Column(name = "nombreTipoEvento", unique = true, length = 50)
     private String nombreCategoria;
     @OneToMany(mappedBy = "idTipoEvento", cascade = CascadeType.ALL)
     @JsonManagedReference("referenceA")
