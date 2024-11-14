@@ -37,6 +37,8 @@ public class Image {
     @JsonBackReference("referenceC")
     private Event codEvento;
 
+    
+
     public Image(String nameImage, String urlImagen, String imageId, Event codEvento){
         this.nameImage = nameImage;
         this.urlImagen = urlImagen;

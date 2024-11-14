@@ -47,6 +47,13 @@ public class EventController {
         }
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteEvent(@PathVariable("id") Long codEvento){
+        Event event = eventServiceImplement.getEvent(codEvento).get();
+        eventServiceImplement.deleteEvent(event);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Event>> getEvent(@PathVariable("id") Long eventId) {
         try{

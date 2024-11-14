@@ -8,6 +8,7 @@ import java.util.Optional;
 import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.repository.EventRepository;
 import java.util.List;
+import com.movil.boliviaXplore.models.Image;
 
 @Service
 public class EventServiceImplement implements EventService {
@@ -22,11 +23,8 @@ public class EventServiceImplement implements EventService {
     public Event saveEvent(Event event, List<MultipartFile> multipartFiles){
         Event addedEvent = null;
         try{
-            System.out.println("pasa por 1");
             addedEvent = this.eventRepository.save(event);
-            System.out.println("pasa por 2"+addedEvent.getCodEvento());
             for (MultipartFile multipartFile : multipartFiles) {
-                System.out.println("pasa por 3");
                 this.imageService.uploadImage(multipartFile, addedEvent);
             }
         } catch (Exception e){ System.out.println(e.getMessage()); }
@@ -39,6 +37,16 @@ public class EventServiceImplement implements EventService {
     }
 
     @Override
-    public void deleteEvent(Event event)throws IOException{}
+    public void deleteEvent(Event event){
+        List<Image> images = event.getImagenes();
+        try{
+            for (Image image : images) {
+                this.imageService.deleteImage(image);
+            }
+            eventRepository.delete(event);
+        } catch(Exception e){
+            System.out.println(e.getMessage()+" error de la imagen");
+        } 
+    }
 
 }
