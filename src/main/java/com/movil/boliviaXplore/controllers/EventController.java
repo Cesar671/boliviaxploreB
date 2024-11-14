@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.Optional;
 import com.movil.boliviaXplore.models.Favorite;
 import java.util.Map;
+import java.util.List;
 
 
 
@@ -37,8 +38,7 @@ public class EventController {
     FavoriteServiceImplement favoriteServiceImplement;
 
     @PostMapping("/register")
-    public ResponseEntity<Event> createEvent(@RequestPart("event") Event event, @RequestPart("imagen") MultipartFile multipartFile) {
-        System.out.println(event);
+    public ResponseEntity<Event> createEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> multipartFile) {
         try{
             Event savedEvent = eventServiceImplement.saveEvent(event, multipartFile);
             return new ResponseEntity<>(savedEvent, HttpStatus.OK);

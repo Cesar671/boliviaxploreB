@@ -7,7 +7,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import com.movil.boliviaXplore.repository.UserRepository;
 
-@Component
+
+@Component("datauserloader")
 public class DataUserLoader implements ApplicationRunner{
     private final UserRepository userRepository;
 

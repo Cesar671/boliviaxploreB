@@ -1,18 +1,25 @@
 package com.movil.boliviaXplore.loaders;
 
 import java.io.IOException;
- 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import com.movil.boliviaXplore.repository.CategoryRepository;
+import com.movil.boliviaXplore.repository.EventRepository;
 import com.movil.boliviaXplore.models.Category;
-@Component
+import com.movil.boliviaXplore.models.Event;
+
+@Component("datacategoryloader")
 public class DataLoader implements ApplicationRunner{
     private final CategoryRepository categoryRepository;
+    private final EventRepository eventRepository;
 
-    public DataLoader(CategoryRepository categoryRepository){
+    public DataLoader(EventRepository eventRepository,CategoryRepository categoryRepository){
         this.categoryRepository = categoryRepository;
+        this.eventRepository = eventRepository;
     }
 
     @Override
@@ -38,5 +45,23 @@ public class DataLoader implements ApplicationRunner{
             this.categoryRepository.save(category5);
             this.categoryRepository.save(category6);
         }
+        List<Category> categories = categoryRepository.findAll(); 
+
+        for (int i = 0; i < 10; i++) {
+            Event event = new Event();
+            event.setNombreEvento("asdasdqweqwasdqweqw");  
+            event.setDescripcionEvento("asdqweadasdqweqw");  
+            event.setUbicacion("asdqweqwasdqewqe");  
+            event.setHistoriaEvento("asdqweqweasdqweqweqwa");  
+            event.setIcon("asdqweqwasdqweqweqweqasdqwe");  
+            event.setFechaInicioEvento(new Date());
+            event.setFechaFinEvento(new Date());
+
+            Category randomCategory = categories.get(3);  
+            event.setCategory(randomCategory);
+
+            this.eventRepository.save(event);  
+        }
+        
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Optional;
 import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.repository.EventRepository;
+import java.util.List;
 
 @Service
 public class EventServiceImplement implements EventService {
@@ -18,14 +19,17 @@ public class EventServiceImplement implements EventService {
     }
 
     @Override
-    public Event saveEvent(Event event, MultipartFile multipartFile){
+    public Event saveEvent(Event event, List<MultipartFile> multipartFiles){
         Event addedEvent = null;
         try{
-        if(multipartFile != null && !multipartFile.isEmpty()){
-            System.out.println(event.getIdTipoEvento());
+            System.out.println("pasa por 1");
             addedEvent = this.eventRepository.save(event);
-            this.imageService.uploadImage(multipartFile, addedEvent);
-        }} catch (Exception e){ System.out.println(e.getMessage()); }
+            System.out.println("pasa por 2"+addedEvent.getCodEvento());
+            for (MultipartFile multipartFile : multipartFiles) {
+                System.out.println("pasa por 3");
+                this.imageService.uploadImage(multipartFile, addedEvent);
+            }
+        } catch (Exception e){ System.out.println(e.getMessage()); }
         return addedEvent;
     }
 
