@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long codEvento;
+    private Long codEvento;
     @Column(length = 50)
     private String nombreEvento;
     @Column(length = 100)
@@ -94,6 +94,10 @@ public class Event {
 
     public String getHistoriaEvento(){
         return this.historiaEvento;
+    }
+
+    public void setHistoriaEvento(String text){
+        this.historiaEvento = text;
     }
 
     public String getIcon(){
