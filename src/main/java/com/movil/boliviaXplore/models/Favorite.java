@@ -44,5 +44,9 @@ public class Favorite {
     public void setCodUsuario(User usuario){
         this.codUsuario = usuario;
     }
+
+    public User getCodUsuario(){
+        return this.codUsuario;
+    }
     
 }

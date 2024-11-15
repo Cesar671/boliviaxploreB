@@ -11,4 +11,5 @@ public interface EventService {
     Event saveEvent(Event event, List<MultipartFile> file) throws IOException;
     void deleteEvent(Event event) throws IOException;
     Optional<Event> getEvent(Long id);
+    List<Event> getAllEvents();
 }

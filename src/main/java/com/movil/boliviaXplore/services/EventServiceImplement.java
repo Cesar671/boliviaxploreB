@@ -37,6 +37,11 @@ public class EventServiceImplement implements EventService {
     }
 
     @Override
+    public List<Event> getAllEvents(){
+        return this.eventRepository.findAll();
+    }
+
+    @Override
     public void deleteEvent(Event event){
         List<Image> images = event.getImagenes();
         try{

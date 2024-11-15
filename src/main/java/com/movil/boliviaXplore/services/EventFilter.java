@@ -19,9 +19,10 @@ public class EventFilter implements Filter<Event> {
 
     @Override
     public List<Event> filter(List events){
+        List<Event> eventsFiltered = new LinkedList<>();
         for (Filter filter :this.filters) {
-            filter.filter(events);
+            eventsFiltered = filter.filter(events);
         }
-        return events;
+        return eventsFiltered;
     }
 }

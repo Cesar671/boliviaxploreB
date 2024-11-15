@@ -18,7 +18,9 @@ public class FilterByCategory implements Filter<Event>{
         List<Event> filteredEvents = new LinkedList<>();
         for (Object event : events) {
             Event nEvent = (Event) event;
+            System.out.println("evento n "+nEvent.getIdTipoEvento().getIdTipoEvento()+""+this.idCategory);
             if(nEvent.getIdTipoEvento().getIdTipoEvento() == this.idCategory){
+                System.out.println("ecuentra coincidencia");
                 filteredEvents.add(nEvent);
             }
         }

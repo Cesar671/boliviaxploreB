@@ -1,17 +1,18 @@
 package com.movil.boliviaXplore.controllers;
 
 import com.movil.boliviaXplore.models.Event;
+import com.movil.boliviaXplore.services.EventFilter;
 import com.movil.boliviaXplore.services.EventServiceImplement;
 import com.movil.boliviaXplore.services.FavoriteServiceImplement;
+import com.movil.boliviaXplore.services.UserServiceImplement;
+import com.movil.boliviaXplore.services.filter.Filters.FilterByCategory;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,12 +24,12 @@ import java.util.Optional;
 import com.movil.boliviaXplore.models.Favorite;
 import java.util.Map;
 import java.util.List;
+import java.util.Date;
 
 
 
 @RestController
 @RequestMapping("/api/event")
-@CrossOrigin("http://localhost:8080/")
 public class EventController {
     
     @Autowired
@@ -36,6 +37,9 @@ public class EventController {
 
     @Autowired
     FavoriteServiceImplement favoriteServiceImplement;
+
+    @Autowired
+    UserServiceImplement userServiceImplement;
 
     @PostMapping("/register")
     public ResponseEntity<Event> createEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> multipartFile) {
@@ -82,20 +86,26 @@ public class EventController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    /*
-    @GetMapping("/filtered")
-    public ResponseEntity<Event> getFilteredEvents(@PathVariable("favorito") boolean favorito, 
-                                                    @PathVariable("eventoActivo") boolean eventoActivo,
-                                                    @PathVariable("fecha") Date fecha,
-                                                    @PathVariable("distancia") String distancia,
-                                                    @PathVariable("busqueda") String busqueda,
-                                                    @PathVariable("categoria") long categoria){
-        try{
-            Event savedEvent = eventServiceImplement.saveEvent(event, multipartFile);
-            return new ResponseEntity<>(savedEvent, HttpStatus.OK);
-        } catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    @PostMapping("/filtered")
+    public ResponseEntity<List<Event>> getFilteredEvents(@RequestBody Map<String, Object> payload){
+        boolean eventoActivo = (boolean) payload.get("eventoActivo");
+        Date fecha = (Date) payload.get("fecha");
+        String distancia = (String) payload.get("distancia");
+        String busqueda = (String) payload.get("busqueda");
+        Long idCategoria = ((Number) payload.get("categoria")).longValue();
+        boolean favorito = (boolean) payload.get("favorito");
+        Long codUsuario = ((Number) payload.get("codUsuario")).longValue();
+
+        List<Event> eventos = eventServiceImplement.getAllEvents();
+
+        EventFilter eventFilter = new EventFilter();
+        if(idCategoria != null){
+            eventFilter.addFilter(new FilterByCategory(idCategoria));
         }
-    }*/
+        
+        List<Event> eventFiltered = eventFilter.filter(eventos);
+
+        return new ResponseEntity<>(eventFiltered, HttpStatus.OK);
+    }
     
 }

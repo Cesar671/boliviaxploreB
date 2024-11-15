@@ -65,6 +65,10 @@ public class Event {
         return this.idTipoEvento;
     }
 
+    public List<Favorite> getIdFavorite(){
+        return this.idFavorite;
+    }
+
     public long getCodEvento(){
         return this.codEvento;
     }

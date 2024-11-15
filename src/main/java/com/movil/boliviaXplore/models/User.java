@@ -27,4 +27,8 @@ public class User {
     @OneToMany(mappedBy = "codUsuario", cascade = CascadeType.ALL)
     @JsonManagedReference("referenceUserA")
     private List<Favorite> idFavorite;
+
+    public Long getCodUsuario(){
+        return this.codUsuario;
+    }
 }
