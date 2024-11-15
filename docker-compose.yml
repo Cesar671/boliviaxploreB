@@ -8,9 +8,9 @@ services:
     ports:
       - 8080:8080
     environment:
-      - DATABASE_URL=jdbc:mysql://java_db:3306/boliviaxplore
-      - DATABASE_USERNAME=root
-      - DATABASE_PASSWORD=BoliviaXplore@2024
+      - DATABASE_URL=jdbc:mysql://ueop8w4bdkoea55p:Zto8A76IQgwYEncIF7q9@byhmsxpmqhejxyszxxoj-mysql.services.clever-cloud.com:3306/byhmsxpmqhejxyszxxoj
+      - DATABASE_USERNAME=ueop8w4bdkoea55p
+      - DATABASE_PASSWORD=Zto8A76IQgwYEncIF7q9
     depends_on:
       - java_db
     command: ["dockerize", "-wait", "tcp://java_db:3306", "-timeout", "30s", "java", "-jar", "/path/to/your/app.jar"]
@@ -20,6 +20,6 @@ services:
     ports: 
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: BoliviaXplore@2024
+      MYSQL_ROOT_PASSWORD: Zto8A76IQgwYEncIF7q9
       MYSQL_DATABASE: boliviaxplore
       
