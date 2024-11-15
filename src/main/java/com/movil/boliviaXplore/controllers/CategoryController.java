@@ -26,6 +26,7 @@ public class CategoryController {
     public ResponseEntity<Optional<Category>> getCategoryWithEvents(@PathVariable("id") Long id) {
         Optional<Category> category = categoryServiceImplement.getEventsByCategory(id);
         if(category.isPresent()){
+            category.get().getEvents().size();
             return new ResponseEntity<>(category, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
