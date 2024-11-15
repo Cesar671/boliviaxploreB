@@ -1,6 +1,8 @@
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\BoliviaXploreApplication.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\controllers\CategoryController.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\controllers\EventController.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\DTO\CategoryDTO.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\DTO\EventDTO.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\loaders\DataLoader.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\loaders\DataUserLoader.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\models\Category.java

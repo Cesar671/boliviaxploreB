@@ -1,11 +1,13 @@
 com\movil\boliviaXplore\loaders\DataUserLoader.class
 com\movil\boliviaXplore\controllers\CategoryController.class
 com\movil\boliviaXplore\repository\ImageRepository.class
+com\movil\boliviaXplore\DTO\EventDTO.class
 com\movil\boliviaXplore\services\filter\Filters\FilterByCategory.class
 com\movil\boliviaXplore\services\EventService.class
 com\movil\boliviaXplore\services\filter\Filter.class
 com\movil\boliviaXplore\services\EventFilter.class
 com\movil\boliviaXplore\BoliviaXploreApplication.class
+com\movil\boliviaXplore\DTO\CategoryDTO.class
 com\movil\boliviaXplore\services\filter\Filters\FilterBySearch.class
 com\movil\boliviaXplore\services\CloudinaryServiceImplement.class
 com\movil\boliviaXplore\loaders\DataLoader.class

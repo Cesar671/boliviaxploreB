@@ -31,6 +31,10 @@ public class Category {
         return this.idTipoEvento;
     }
 
+    public String getNombreCategoria(){
+        return this.nombreCategoria;
+    }
+
     public void setNombreCategoria(String nombre){
         this.nombreCategoria = nombre;
     }

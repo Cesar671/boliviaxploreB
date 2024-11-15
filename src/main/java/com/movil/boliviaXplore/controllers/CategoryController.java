@@ -3,6 +3,7 @@ package com.movil.boliviaXplore.controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.movil.boliviaXplore.DTO.CategoryDTO;
 import com.movil.boliviaXplore.services.CategoryServiceImplement;
 import com.movil.boliviaXplore.models.Category;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,8 @@ public class CategoryController {
     }
     
     @GetMapping("/all")
-    public ResponseEntity<List<Category>> getAllCategories() {
-        List<Category> categories = this.categoryServiceImplement.getAllCategories();
+    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
+        List<CategoryDTO> categories = this.categoryServiceImplement.getAllCategories();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
     
