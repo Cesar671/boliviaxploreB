@@ -45,9 +45,9 @@ public class DataLoader implements ApplicationRunner{
             this.categoryRepository.save(category5);
             this.categoryRepository.save(category6);
         }
-        List<Category> categories = categoryRepository.findAll(); 
+        //List<Category> categories = categoryRepository.findAll(); 
 
-        for (int i = 0; i < 10; i++) {
+        /*for (int i = 0; i < 10; i++) {
             Event event = new Event();
             event.setNombreEvento("asdasdqweqwasdqweqw");  
             event.setDescripcionEvento("asdqweadasdqweqw");  
@@ -61,7 +61,7 @@ public class DataLoader implements ApplicationRunner{
             event.setCategory(randomCategory);
 
             this.eventRepository.save(event);  
-        }
+        }*/
         
     }
 }
