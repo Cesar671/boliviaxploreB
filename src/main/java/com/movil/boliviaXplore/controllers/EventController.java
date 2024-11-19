@@ -1,5 +1,6 @@
 package com.movil.boliviaXplore.controllers;
 
+import com.movil.boliviaXplore.DTO.EventDTO;
 import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.services.EventFilter;
 import com.movil.boliviaXplore.services.EventServiceImplement;
@@ -53,16 +54,16 @@ public class EventController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteEvent(@PathVariable("id") Long codEvento){
-        Event event = eventServiceImplement.getEvent(codEvento).get();
+        Event event = eventServiceImplement.getEvent(codEvento);
         eventServiceImplement.deleteEvent(event);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Event>> getEvent(@PathVariable("id") Long eventId) {
+    public ResponseEntity<EventDTO> getEvent(@PathVariable("id") Long eventId) {
         try{
-            Optional<Event> event = eventServiceImplement.getEvent(eventId);
-            return new ResponseEntity<>(event, HttpStatus.OK);
+            Event event = eventServiceImplement.getEvent(eventId);
+            return new ResponseEntity<>(EventDTO.getInstance(event), HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
