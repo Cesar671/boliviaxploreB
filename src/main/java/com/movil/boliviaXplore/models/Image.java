@@ -15,13 +15,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
 @Table(name = "imagen")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codImagen")
-    private long codImagen;
+    private Long codImagen;
 
     @Column(name = "nameImagen", length = 200)
     private String nameImage;
@@ -37,7 +36,7 @@ public class Image {
     @JsonBackReference("referenceC")
     private Event codEvento;
 
-    
+    public Image(){}
 
     public Image(String nameImage, String urlImagen, String imageId, Event codEvento){
         this.nameImage = nameImage;
@@ -46,7 +45,7 @@ public class Image {
         this.codEvento = codEvento;
     }
 
-    public long getCodImagen(){
+    public Long getCodImagen(){
         return this.codImagen;
     }
 

@@ -9,6 +9,7 @@ import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.repository.EventRepository;
 import java.util.List;
 import com.movil.boliviaXplore.models.Image;
+import com.movil.boliviaXplore.DTO.EventDTO;
 
 @Service
 public class EventServiceImplement implements EventService {
@@ -32,8 +33,8 @@ public class EventServiceImplement implements EventService {
     }
 
     @Override
-    public Optional<Event> getEvent(Long id){
-        return this.eventRepository.findById(id);
+    public Event getEvent(Long id){
+        return this.eventRepository.findById(id).get();
     }
 
     @Override

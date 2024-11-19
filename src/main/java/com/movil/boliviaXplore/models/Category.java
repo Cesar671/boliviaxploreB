@@ -20,14 +20,14 @@ public class Category {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     @Column(name = "codTipoEvento")
-    private long idTipoEvento;
+    private Long idTipoEvento;
     @Column(name = "nombreTipoEvento", unique = true, length = 50)
     private String nombreCategoria;
     @OneToMany(mappedBy = "idTipoEvento", cascade = CascadeType.ALL)
     @JsonManagedReference("referenceA")
     private List<Event> events;
 
-    public long getIdTipoEvento(){
+    public Long getIdTipoEvento(){
         return this.idTipoEvento;
     }
 

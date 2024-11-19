@@ -1,5 +1,6 @@
 package com.movil.boliviaXplore.controllers;
 
+import com.movil.boliviaXplore.DTO.EventDTO;
 import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.services.EventFilter;
 import com.movil.boliviaXplore.services.EventServiceImplement;
@@ -14,13 +15,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import java.util.Optional;
 import com.movil.boliviaXplore.models.Favorite;
 import java.util.Map;
 import java.util.List;
@@ -53,16 +52,22 @@ public class EventController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteEvent(@PathVariable("id") Long codEvento){
-        Event event = eventServiceImplement.getEvent(codEvento).get();
-        eventServiceImplement.deleteEvent(event);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            Event event = eventServiceImplement.getEvent(codEvento);
+            eventServiceImplement.deleteEvent(event);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
     }
 
+    //DTO added
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Event>> getEvent(@PathVariable("id") Long eventId) {
+    public ResponseEntity<EventDTO> getEvent(@PathVariable("id") Long eventId) {
         try{
-            Optional<Event> event = eventServiceImplement.getEvent(eventId);
-            return new ResponseEntity<>(event, HttpStatus.OK);
+            Event event = eventServiceImplement.getEvent(eventId);
+            return new ResponseEntity<>(EventDTO.getInstance(event), HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -70,20 +75,27 @@ public class EventController {
     
     @PostMapping("/mark-favorite")
     public ResponseEntity<Favorite> createFavorite(@RequestBody Map<String, Object> payload) {
-        Long codEvento = ((Number) payload.get("codEvento")).longValue();
-        Long codUsuario = ((Number) payload.get("codUsuario")).longValue();
-        System.out.println("pasa por 1"+codEvento+" "+codUsuario);
-        Favorite favorite = this.favoriteServiceImplement.setFavorite(codEvento, codUsuario);
-        System.out.println("pasa por 1");
-        return new ResponseEntity<>(favorite, HttpStatus.OK);
+        try{
+            Long codEvento = ((Number) payload.get("codEvento")).longValue();
+            Long codUsuario = ((Number) payload.get("codUsuario")).longValue();
+            Favorite favorite = this.favoriteServiceImplement.setFavorite(codEvento, codUsuario);
+            return new ResponseEntity<>(favorite, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/mark-favorite")
     public ResponseEntity<Favorite> deleteFavorite(@RequestBody Map<String, Object> payload){
-        Long codUsuario = ((Number) payload.get("codUsuario")).longValue();
-        Long codEvento = ((Number) payload.get("codEvento")).longValue();
-        this.favoriteServiceImplement.deleteFavorite(codEvento, codUsuario);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            Long codUsuario = ((Number) payload.get("codUsuario")).longValue();
+            Long codEvento = ((Number) payload.get("codEvento")).longValue();
+            this.favoriteServiceImplement.deleteFavorite(codEvento, codUsuario);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
     }
     
     @PostMapping("/filtered")

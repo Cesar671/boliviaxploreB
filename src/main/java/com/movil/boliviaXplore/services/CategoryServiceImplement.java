@@ -2,7 +2,9 @@ package com.movil.boliviaXplore.services;
 
 import org.springframework.stereotype.Service;
 
+import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.DTO.CategoryDTO;
+import com.movil.boliviaXplore.DTO.EventDTO;
 import com.movil.boliviaXplore.models.Category;
 import com.movil.boliviaXplore.repository.CategoryRepository;
 import java.util.Optional;
@@ -18,18 +20,22 @@ public class CategoryServiceImplement implements CategoryService{
         this.categoryRepository = categoryRepository;
     }
 
+   
+
     @Override
-    public Optional<Category> getEventsByCategory(long id){
-        return this.categoryRepository.findById(id);
+    public List<EventDTO> getEventsByCategory(long id){
+        Category category = this.categoryRepository.findById(id).get();
+        CategoryDTO categoryDto = CategoryDTO.getInstance(category);
+        return categoryDto.getEvents(); 
     }
 
     @Override
     public List<CategoryDTO> getAllCategories(){
         List<Category> categories = this.categoryRepository.findAll();
-        List<CategoryDTO> categoriesDTO = new LinkedList<>();
+        List<CategoryDTO> categoriesDto = new LinkedList<>();
         for (Category category : categories) {
-            categoriesDTO.add(new CategoryDTO(category.getIdTipoEvento(), category.getNombreCategoria(), new LinkedList<>()));
+            categoriesDto.add(CategoryDTO.getInstance(category));
         }
-        return categoriesDTO;
+        return categoriesDto;
     }
 }
