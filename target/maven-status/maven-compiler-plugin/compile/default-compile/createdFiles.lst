@@ -9,6 +9,7 @@ com\movil\boliviaXplore\services\EventFilter.class
 com\movil\boliviaXplore\BoliviaXploreApplication.class
 com\movil\boliviaXplore\DTO\CategoryDTO.class
 com\movil\boliviaXplore\services\filter\Filters\FilterBySearch.class
+com\movil\boliviaXplore\DTO\ImageDTO.class
 com\movil\boliviaXplore\services\CloudinaryServiceImplement.class
 com\movil\boliviaXplore\loaders\DataLoader.class
 com\movil\boliviaXplore\models\Favorite.class
