@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
 @Table(name = "imagen")
 public class Image {
     @Id
@@ -37,7 +36,7 @@ public class Image {
     @JsonBackReference("referenceC")
     private Event codEvento;
 
-    
+    public Image(){}
 
     public Image(String nameImage, String urlImagen, String imageId, Event codEvento){
         this.nameImage = nameImage;
