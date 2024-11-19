@@ -51,9 +51,9 @@ public class DataLoader implements ApplicationRunner{
             Event event = new Event();
             event.setNombreEvento("asdasdqweqwasdqweqw");  
             event.setDescripcionEvento("asdqweadasdqweqw");  
-            event.setUbicacion("asdqweqwasdqewqe");  
+            event.setLongitud(((Number) 1234).longValue());
+            event.setLatitud(((Number) 12345).longValue());  
             event.setHistoriaEvento("asdqweqweasdqweqweqwa");  
-            event.setIcon("asdqweqwasdqweqweqweqasdqwe");  
             event.setFechaInicioEvento(new Date());
             event.setFechaFinEvento(new Date());
 

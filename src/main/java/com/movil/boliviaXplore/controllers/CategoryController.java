@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import java.util.Optional;
 import java.util.List;
+import com.movil.boliviaXplore.DTO.CategoryDTO;
+import com.movil.boliviaXplore.DTO.EventDTO;
 
 
 @RestController
@@ -23,17 +23,19 @@ public class CategoryController {
     CategoryServiceImplement categoryServiceImplement;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Category>> getCategoryWithEvents(@PathVariable("id") Long id) {
-        Optional<Category> category = categoryServiceImplement.getEventsByCategory(id);
-        if(category.isPresent()){
-            return new ResponseEntity<>(category, HttpStatus.OK);
+    public ResponseEntity<List<EventDTO>> getEventsByCategory(@PathVariable("id") Long id) {
+        try{
+            List<EventDTO> events = categoryServiceImplement.getEventsByCategory(id);
+            return new ResponseEntity<>(events, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        
     }
     
     @GetMapping("/all")
-    public ResponseEntity<List<Category>> getAllCategories() {
-        List<Category> categories = this.categoryServiceImplement.getAllCategories();
+    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
+        List<CategoryDTO> categories = this.categoryServiceImplement.getAllCategories();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
     

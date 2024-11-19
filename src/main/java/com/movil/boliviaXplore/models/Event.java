@@ -33,8 +33,11 @@ public class Event {
     @Column(name = "descripcionEvento", length = 100)
     private String descripcionEvento;
 
-    @Column(name = "ubicacion", length = 50)
-    private String ubicacion;
+    @Column(name = "longitud")
+    private Long latitud;
+
+    @Column(name = "latitud")
+    private Long longitud;
 
     @Column(name = "historiaEvento", length = 100)
     private String historiaEvento;
@@ -44,9 +47,6 @@ public class Event {
 
     @Column(name = "fechaFinEvento")
     private Date fechaFinEvento;
-
-    @Column(name = "icon", length = 200)
-    private String icon;
 
     @ManyToOne
     @JsonBackReference("referenceA")
@@ -98,12 +98,20 @@ public class Event {
         this.descripcionEvento = descripcionEvento;
     }
 
-    public void setUbicacion(String ubicacion){
-        this.ubicacion = ubicacion;
+    public void setLatitud(Long latitud){
+        this.latitud = latitud;
     }
 
-    public String getUbicacion(){
-        return this.ubicacion;
+    public Long getLatitud(){
+        return this.latitud;
+    }
+
+    public void setLongitud(Long longitud){
+        this.longitud = longitud;
+    }
+
+    public Long getLongitud(){
+        return this.longitud;
     }
 
     public String getHistoriaEvento(){
@@ -112,14 +120,6 @@ public class Event {
 
     public void setHistoriaEvento(String text){
         this.historiaEvento = text;
-    }
-
-    public String getIcon(){
-        return this.icon;
-    }
-
-    public void setIcon(String icon){
-        this.icon = icon;
     }
 
     public void setFechaInicioEvento(Date fechaEvento){
