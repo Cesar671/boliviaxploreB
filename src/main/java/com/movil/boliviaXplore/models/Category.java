@@ -10,6 +10,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import java.util.List;
+import jakarta.persistence.FetchType;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -23,7 +24,7 @@ public class Category {
     private Long idTipoEvento;
     @Column(name = "nombreTipoEvento", unique = true, length = 50)
     private String nombreCategoria;
-    @OneToMany(mappedBy = "idTipoEvento", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idTipoEvento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference("referenceA")
     private List<Event> events;
 

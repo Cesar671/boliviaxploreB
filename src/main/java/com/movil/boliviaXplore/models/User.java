@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
+import jakarta.persistence.FetchType;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -24,7 +25,7 @@ public class User {
     @Column(name = "codUsuario")
     private Long codUsuario;
 
-    @OneToMany(mappedBy = "codUsuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "codUsuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference("referenceUserA")
     private List<Favorite> idFavorite;
 
