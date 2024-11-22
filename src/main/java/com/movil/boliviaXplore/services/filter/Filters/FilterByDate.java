@@ -15,10 +15,9 @@ public class FilterByDate implements Filter<Event>{
     @Override
     public List<Event> filter(List events){
         List<Event> filteredEvents = new LinkedList<>();
-        Date now = new Date();
         for (Object event : events) {
             Event nEvent = (Event) event;
-            if(this.day.compareTo(now) == 0){
+            if(this.day.compareTo(nEvent.getFechaInicioEvento()) >= 0 && this.day.compareTo(nEvent.getFechaFinEvento()) <= 0){
                 filteredEvents.add(nEvent);
             }
         }

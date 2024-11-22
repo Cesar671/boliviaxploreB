@@ -7,9 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 public class FilterByCategory implements Filter<Event>{
 
-    private long idCategory;
+    private Long idCategory;
 
-    public FilterByCategory(long idCategory){
+    public FilterByCategory(Long idCategory){
         this.idCategory = idCategory;
     }
     
@@ -18,9 +18,9 @@ public class FilterByCategory implements Filter<Event>{
         List<Event> filteredEvents = new LinkedList<>();
         for (Object event : events) {
             Event nEvent = (Event) event;
-            System.out.println("evento n "+nEvent.getIdTipoEvento().getIdTipoEvento()+""+this.idCategory);
+            System.out.println(nEvent.getIdTipoEvento().getIdTipoEvento()+" "+ this.idCategory);
             if(nEvent.getIdTipoEvento().getIdTipoEvento() == this.idCategory){
-                System.out.println("ecuentra coincidencia");
+                System.out.println("entra en la comparativa");
                 filteredEvents.add(nEvent);
             }
         }

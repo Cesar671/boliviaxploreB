@@ -17,11 +17,15 @@ public class EventFilter implements Filter<Event> {
         return this;
     }
 
+    public boolean existsFilters(){
+        return this.filters.size() > 0;
+    }
+
     @Override
     public List<Event> filter(List events){
-        List<Event> eventsFiltered = new LinkedList<>();
+        List<Event> eventsFiltered = events;
         for (Filter filter :this.filters) {
-            eventsFiltered = filter.filter(events);
+            eventsFiltered = filter.filter(eventsFiltered);
         }
         return eventsFiltered;
     }

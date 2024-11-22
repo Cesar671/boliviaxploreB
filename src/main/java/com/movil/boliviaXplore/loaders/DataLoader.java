@@ -1,6 +1,8 @@
 package com.movil.boliviaXplore.loaders;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -44,24 +46,30 @@ public class DataLoader implements ApplicationRunner{
             this.categoryRepository.save(category4);
             this.categoryRepository.save(category5);
             this.categoryRepository.save(category6);
+
+            List<Category> categories = categoryRepository.findAll(); 
+
+            for (int i = 0; i < 10; i++) {
+                Event event = new Event();
+                event.setNombreEvento("asdasdqweqwasdqweqw");  
+                event.setDescripcionEvento("asdqweadasdqweqw");  
+                event.setLongitud(((Number) 1234).longValue());
+                event.setLatitud(((Number) 12345).longValue());  
+                event.setHistoriaEvento("asdqweqweasdqweqweqwa");  
+                LocalDate a = LocalDate.of(2024, 11, 02);
+                LocalDate b = LocalDate.of(2024, 11, 04);
+                try{
+                    event.setFechaInicioEvento(Date.from(a.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                    event.setFechaFinEvento(Date.from(b.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                } catch (Exception e){}
+                
+                
+
+                Category randomCategory = categories.get(3);  
+                event.setCategory(randomCategory);
+
+                this.eventRepository.save(event);  
+            }
         }
-        //List<Category> categories = categoryRepository.findAll(); 
-
-        /*for (int i = 0; i < 10; i++) {
-            Event event = new Event();
-            event.setNombreEvento("asdasdqweqwasdqweqw");  
-            event.setDescripcionEvento("asdqweadasdqweqw");  
-            event.setLongitud(((Number) 1234).longValue());
-            event.setLatitud(((Number) 12345).longValue());  
-            event.setHistoriaEvento("asdqweqweasdqweqweqwa");  
-            event.setFechaInicioEvento(new Date());
-            event.setFechaFinEvento(new Date());
-
-            Category randomCategory = categories.get(3);  
-            event.setCategory(randomCategory);
-
-            this.eventRepository.save(event);  
-        }*/
-        
     }
 }

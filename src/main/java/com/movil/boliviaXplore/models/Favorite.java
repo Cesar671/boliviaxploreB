@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,10 @@ public class Favorite {
     @JsonBackReference("referenceUserA")
     @JoinColumn(name = "codUsuario", nullable = false)
     private User codUsuario;
+
+    public Long getIdFavorite(){
+        return this.idFavorite;
+    }
 
     public void setCodEvento(Event event){
         this.codEvento = event;

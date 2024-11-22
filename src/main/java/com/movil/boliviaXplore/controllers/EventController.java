@@ -6,7 +6,11 @@ import com.movil.boliviaXplore.services.EventFilter;
 import com.movil.boliviaXplore.services.EventServiceImplement;
 import com.movil.boliviaXplore.services.FavoriteServiceImplement;
 import com.movil.boliviaXplore.services.UserServiceImplement;
+import com.movil.boliviaXplore.services.filter.Filters.FilterActiveEvent;
 import com.movil.boliviaXplore.services.filter.Filters.FilterByCategory;
+import com.movil.boliviaXplore.services.filter.Filters.FilterByDate;
+import com.movil.boliviaXplore.services.filter.Filters.FilterBySearch;
+import com.movil.boliviaXplore.services.filter.Filters.FilterFavorite;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +25,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.movil.boliviaXplore.models.Favorite;
+import com.movil.boliviaXplore.models.User;
+
 import java.util.Map;
 import java.util.List;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -100,24 +107,49 @@ public class EventController {
     
     @PostMapping("/filtered")
     public ResponseEntity<List<Event>> getFilteredEvents(@RequestBody Map<String, Object> payload){
-        boolean eventoActivo = (boolean) payload.get("eventoActivo");
-        Date fecha = (Date) payload.get("fecha");
-        String distancia = (String) payload.get("distancia");
-        String busqueda = (String) payload.get("busqueda");
-        Long idCategoria = ((Number) payload.get("categoria")).longValue();
-        boolean favorito = (boolean) payload.get("favorito");
-        Long codUsuario = ((Number) payload.get("codUsuario")).longValue();
-
         List<Event> eventos = eventServiceImplement.getAllEvents();
+        try{ 
+            boolean eventoActivo = (boolean) payload.get("eventoActivo");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Object dateobj = payload.get("fecha");
+            String date = dateobj != null ? dateobj.toString():null;
+            Date fecha = null;
+            if (date != null) {
+                fecha = formatter.parse(date);
+            }
+            String distancia = (String) payload.get("distancia");
+            String busqueda = (String) payload.get("busqueda");
+            Long idCategoria =(payload.get("categoria") != null) ? ((Number) payload.get("categoria")).longValue():null;
+            boolean favorito = (boolean) payload.get("favorito");
+            Long codUsuario = (payload.get("codUsuario") != null) ? ((Number) payload.get("codUsuario")).longValue():null;
+            EventFilter eventFilter = new EventFilter();
+            if(idCategoria != null){
+                eventFilter.addFilter(new FilterByCategory(idCategoria));
+            }
+            if(fecha != null){
+                eventFilter.addFilter(new FilterByDate(fecha));
+            }
+            if(busqueda.length() > 0){
+                eventFilter.addFilter(new FilterBySearch(busqueda));
+            }
 
-        EventFilter eventFilter = new EventFilter();
-        if(idCategoria != null){
-            eventFilter.addFilter(new FilterByCategory(idCategoria));
+            if(eventoActivo){
+                eventFilter.addFilter(new FilterActiveEvent());
+            }
+
+            if(favorito){
+                User user = this.userServiceImplement.getUser(codUsuario);
+                eventFilter.addFilter(new FilterFavorite(user));
+            }
+
+            if(eventFilter.existsFilters()){
+                return new ResponseEntity<>(eventFilter.filter(eventos), HttpStatus.OK);
+            }
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         
-        List<Event> eventFiltered = eventFilter.filter(eventos);
-
-        return new ResponseEntity<>(eventFiltered, HttpStatus.OK);
+        return new ResponseEntity<>(eventos, HttpStatus.OK);
     }
     
 }

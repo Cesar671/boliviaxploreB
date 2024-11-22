@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.movil.boliviaXplore.models.Event;
+import com.movil.boliviaXplore.models.User;
 
 @Service
 public class UserServiceImplement implements UserService{
@@ -19,6 +20,10 @@ public class UserServiceImplement implements UserService{
     @Override
     public List<Event> getAllFavorites(long codUsuario){
         return null;
+    }
+
+    public User getUser(Long id){
+        return this.userRepository.findById(id).get();
     }
     
 }
