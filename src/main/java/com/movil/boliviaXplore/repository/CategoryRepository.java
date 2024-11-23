@@ -7,5 +7,5 @@ import com.movil.boliviaXplore.models.Category;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-    
+    Category findByNombreCategoria(String name);
 }
