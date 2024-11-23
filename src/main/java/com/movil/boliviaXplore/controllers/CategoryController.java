@@ -29,7 +29,16 @@ public class CategoryController {
         } catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<List<EventDTO>> getEventsByNameCategory(@PathVariable("name") String name) {
+        try{
+            List<EventDTO> events = categoryServiceImplement.getEventsByCategory(name);
+            return new ResponseEntity<>(events, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
     
     @GetMapping("/all")
@@ -37,5 +46,6 @@ public class CategoryController {
         List<CategoryDTO> categories = this.categoryServiceImplement.getAllCategories();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
+
     
 }

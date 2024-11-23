@@ -30,6 +30,13 @@ public class CategoryServiceImplement implements CategoryService{
     }
 
     @Override
+    public List<EventDTO> getEventsByCategory(String name){
+        Category category = this.categoryRepository.findByNombreCategoria(name);
+        CategoryDTO categoryDto = CategoryDTO.getInstance(category);
+        return categoryDto.getEvents(); 
+    }
+
+    @Override
     public List<CategoryDTO> getAllCategories(){
         List<Category> categories = this.categoryRepository.findAll();
         List<CategoryDTO> categoriesDto = new LinkedList<>();

@@ -9,5 +9,6 @@ import com.movil.boliviaXplore.DTO.EventDTO;
 
 public interface CategoryService {
     List<EventDTO> getEventsByCategory(long id);
+    List<EventDTO> getEventsByCategory(String name);
     List<CategoryDTO> getAllCategories();
 }
