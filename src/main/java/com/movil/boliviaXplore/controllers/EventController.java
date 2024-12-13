@@ -5,6 +5,7 @@ import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.services.EventFilter;
 import com.movil.boliviaXplore.services.EventServiceImplement;
 import com.movil.boliviaXplore.services.FavoriteServiceImplement;
+import com.movil.boliviaXplore.services.RecomendationServiceImplement;
 import com.movil.boliviaXplore.services.UserServiceImplement;
 import com.movil.boliviaXplore.services.filter.Filters.FilterActiveEvent;
 import com.movil.boliviaXplore.services.filter.Filters.FilterByCategory;
@@ -50,6 +51,18 @@ public class EventController {
 
     @Autowired
     UserServiceImplement userServiceImplement;
+
+    @Autowired
+    RecomendationServiceImplement recomendationServiceImplement;
+
+    @PostMapping("/getrecomendation")
+    public ResponseEntity<Event> getRecomendation(@RequestBody Map<String, Object> payload){   
+        long idUsuario = ((Number) payload.get("idUsuario")).longValue();
+        double latitud =(double) payload.get("latitud");
+    double longitud =(double) payload.get("longitud");
+        Event recomendatedEvent = this.recomendationServiceImplement.getRecomendation(idUsuario ,longitud, latitud);
+        return new ResponseEntity<>(recomendatedEvent, HttpStatus.OK);
+    }
 
     @PutMapping("/update")
     public ResponseEntity<Event> updateEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> files) {
