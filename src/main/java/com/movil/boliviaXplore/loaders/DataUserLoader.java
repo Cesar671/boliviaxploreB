@@ -20,6 +20,10 @@ public class DataUserLoader implements ApplicationRunner{
     public void run(ApplicationArguments args) throws IOException{
         if( userRepository.count() == 0 ){
             User user = new User();
+            user.setCorreoUsuario("correo de usuario");
+            user.setNombreUsuario("nombre del usuario");
+            user.setRolUsuario(1);
+            user.setFotoUsuario("url foto");
             userRepository.save(user);
         }
     }

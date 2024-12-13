@@ -11,4 +11,6 @@ public interface EventService {
     void deleteEvent(Event event) throws IOException;
     Event getEvent(Long id);
     List<Event> getAllEvents();
+    List<Integer> getEventDaysInMonth(int year, int month);
+    Event updateEvent(Event event, List<MultipartFile> file);
 }

@@ -25,6 +25,8 @@ F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\serv
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\EventServiceImplement.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\FavoriteService.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\FavoriteServiceImplement.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\distance\Distance.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\distance\HaversineDistance.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\Filter.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\Filters\FilterActiveEvent.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\Filters\FilterByCategory.java

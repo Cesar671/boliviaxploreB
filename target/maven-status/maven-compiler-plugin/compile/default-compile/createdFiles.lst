@@ -1,4 +1,5 @@
 com\movil\boliviaXplore\loaders\DataUserLoader.class
+com\movil\boliviaXplore\services\filter\distance\HaversineDistance.class
 com\movil\boliviaXplore\controllers\CategoryController.class
 com\movil\boliviaXplore\repository\ImageRepository.class
 com\movil\boliviaXplore\DTO\EventDTO.class
@@ -34,5 +35,6 @@ com\movil\boliviaXplore\repository\EventRepository.class
 com\movil\boliviaXplore\services\FavoriteServiceImplement.class
 com\movil\boliviaXplore\services\CategoryServiceImplement.class
 com\movil\boliviaXplore\services\CloudinaryService.class
+com\movil\boliviaXplore\services\filter\distance\Distance.class
 com\movil\boliviaXplore\services\filter\Filters\FilterByDistance.class
 com\movil\boliviaXplore\services\filter\Filters\FilterActiveEvent.class

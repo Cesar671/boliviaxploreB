@@ -55,7 +55,8 @@ public class DataLoader implements ApplicationRunner{
                 event.setDescripcionEvento("asdqweadasdqweqw");  
                 event.setLongitud(((Number) 1234).longValue());
                 event.setLatitud(((Number) 12345).longValue());  
-                event.setHistoriaEvento("asdqweqweasdqweqweqwa");  
+                event.setHistoriaEvento("asdqweqweasdqweqweqwa"); 
+                event.setPermanente(true); 
                 LocalDate a = LocalDate.of(2024, 11, 02);
                 LocalDate b = LocalDate.of(2024, 11, 04);
                 try{
