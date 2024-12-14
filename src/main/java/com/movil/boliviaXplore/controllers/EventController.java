@@ -5,12 +5,15 @@ import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.services.EventFilter;
 import com.movil.boliviaXplore.services.EventServiceImplement;
 import com.movil.boliviaXplore.services.FavoriteServiceImplement;
+import com.movil.boliviaXplore.services.RecomendationServiceImplement;
 import com.movil.boliviaXplore.services.UserServiceImplement;
 import com.movil.boliviaXplore.services.filter.Filters.FilterActiveEvent;
 import com.movil.boliviaXplore.services.filter.Filters.FilterByCategory;
 import com.movil.boliviaXplore.services.filter.Filters.FilterByDate;
+import com.movil.boliviaXplore.services.filter.Filters.FilterByDistance;
 import com.movil.boliviaXplore.services.filter.Filters.FilterBySearch;
 import com.movil.boliviaXplore.services.filter.Filters.FilterFavorite;
+import com.movil.boliviaXplore.services.filter.distance.HaversineDistance;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +34,8 @@ import java.util.Map;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -46,6 +51,24 @@ public class EventController {
 
     @Autowired
     UserServiceImplement userServiceImplement;
+
+    @Autowired
+    RecomendationServiceImplement recomendationServiceImplement;
+
+    @PostMapping("/getrecomendation")
+    public ResponseEntity<Event> getRecomendation(@RequestBody Map<String, Object> payload){   
+        long idUsuario = ((Number) payload.get("idUsuario")).longValue();
+        double latitud =(double) payload.get("latitud");
+    double longitud =(double) payload.get("longitud");
+        Event recomendatedEvent = this.recomendationServiceImplement.getRecomendation(idUsuario ,longitud, latitud);
+        return new ResponseEntity<>(recomendatedEvent, HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Event> updateEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> files) {
+        Event eventUpdated = eventServiceImplement.updateEvent(event, files);
+        return new ResponseEntity<>(eventUpdated, HttpStatus.OK);
+    }
 
     @PostMapping("/register")
     public ResponseEntity<Event> createEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> multipartFile) {
@@ -117,12 +140,17 @@ public class EventController {
             if (date != null) {
                 fecha = formatter.parse(date);
             }
-            String distancia = (String) payload.get("distancia");
+            double distancia = (double) payload.get("distancia");
+            double longitud = (double) payload.get("longitud");
+            double latitud = (double) payload.get("latitud");
             String busqueda = (String) payload.get("busqueda");
             Long idCategoria =(payload.get("categoria") != null) ? ((Number) payload.get("categoria")).longValue():null;
             boolean favorito = (boolean) payload.get("favorito");
             Long codUsuario = (payload.get("codUsuario") != null) ? ((Number) payload.get("codUsuario")).longValue():null;
             EventFilter eventFilter = new EventFilter();
+            if(longitud != 0 && latitud != 0 && distancia != 0){
+                eventFilter.addFilter(new FilterByDistance(longitud, latitud, distancia, new HaversineDistance()));
+            }
             if(idCategoria != null){
                 eventFilter.addFilter(new FilterByCategory(idCategoria));
             }
@@ -136,7 +164,6 @@ public class EventController {
             if(eventoActivo){
                 eventFilter.addFilter(new FilterActiveEvent());
             }
-
             if(favorito){
                 User user = this.userServiceImplement.getUser(codUsuario);
                 eventFilter.addFilter(new FilterFavorite(user));
@@ -151,5 +178,10 @@ public class EventController {
         
         return new ResponseEntity<>(eventos, HttpStatus.OK);
     }
-    
+  
+    @GetMapping("/days-in-month/{year}/{month}")
+    public ResponseEntity<List<Integer>> getEventDaysInMonth(@PathVariable("year") int year, @PathVariable("month") int month) {
+        List<Integer> days = eventServiceImplement.getEventDaysInMonth(year, month);
+        return ResponseEntity.ok(days);
+    }
 }

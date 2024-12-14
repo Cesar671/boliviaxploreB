@@ -11,14 +11,24 @@ public class EventDTO{
     private Long codEvento;
     private String nombreEvento;
     private String descripcionEvento;
-    private Long latitud;
-    private Long longitud;
+    private double latitud;
+    private double longitud;
     private String historiaEvento;
     private Date fechaInicioEvento;
     private Date fechaFinEvento;
     private Long idTipoEvento;
+    private boolean permanente;
     private List<ImageDTO> imagenes;
 
+
+    public EventDTO setPermanente(boolean permanente){
+        this.permanente = permanente;
+        return this;
+    }
+
+    public boolean getPermanente(){
+        return this.permanente;
+    }
 
     public List<ImageDTO> getImagenes(){
         return this.imagenes;
@@ -65,21 +75,21 @@ public class EventDTO{
         return this.descripcionEvento;
     }
 
-    public EventDTO setLatitud(Long latitud){
+    public EventDTO setLatitud(double latitud){
         this.latitud = latitud;
         return this;
     }
 
-    public Long getLatitud(){
+    public double getLatitud(){
         return this.latitud;
     }
 
-    public EventDTO setLongitud(Long longitud){
+    public EventDTO setLongitud(double longitud){
         this.longitud = longitud;
         return this;
     }
 
-    public Long getLongitud(){
+    public double getLongitud(){
         return this.longitud;
     }
 
@@ -127,6 +137,7 @@ public class EventDTO{
                 setFechainicioEvento(event.getFechaInicioEvento()).
                 setFechaFinEvento(event.getFechaFinEvento()).
                 setIdTipoEvento(event.getIdTipoEvento().getIdTipoEvento()).
+                setPermanente(event.getPermenente()).
                 setImagenes(imagesDto);
     }
 }

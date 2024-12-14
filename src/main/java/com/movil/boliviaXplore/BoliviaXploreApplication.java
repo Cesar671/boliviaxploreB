@@ -9,5 +9,4 @@ public class BoliviaXploreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BoliviaXploreApplication.class, args);
 	}
-
 }

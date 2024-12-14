@@ -1,6 +1,8 @@
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\BoliviaXploreApplication.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\controllers\CategoryController.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\controllers\EventController.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\controllers\NotificationController.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\controllers\UserController.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\DTO\CategoryDTO.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\DTO\EventDTO.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\DTO\ImageDTO.java
@@ -10,11 +12,15 @@ F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\mode
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\models\Event.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\models\Favorite.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\models\Image.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\models\Notification.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\models\Preferences.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\models\User.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\repository\CategoryRepository.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\repository\EventRepository.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\repository\FavoriteRepository.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\repository\ImageRepository.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\repository\NotificationRepository.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\repository\PreferencesRepository.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\repository\UserRepository.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\CategoryService.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\CategoryServiceImplement.java
@@ -25,6 +31,8 @@ F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\serv
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\EventServiceImplement.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\FavoriteService.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\FavoriteServiceImplement.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\distance\Distance.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\distance\HaversineDistance.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\Filter.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\Filters\FilterActiveEvent.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\Filters\FilterByCategory.java
@@ -32,7 +40,12 @@ F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\serv
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\Filters\FilterByDistance.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\Filters\FilterBySearch.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\Filters\FilterFavorite.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\filter\Filters\FilterNotFavorite.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\ImageService.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\ImageServiceImplement.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\NotificationService.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\NotificationServiceImplement.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\RecomendationService.java
+F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\RecomendationServiceImplement.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\UserService.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\UserServiceImplement.java

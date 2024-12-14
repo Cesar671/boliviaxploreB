@@ -28,19 +28,22 @@ public class Event {
     @Column(name = "codEvento")
     private Long codEvento;
 
-    @Column(name = "nombreEvento", length = 50)
+    @Column(name = "nombreEvento", length = 100)
     private String nombreEvento;
 
-    @Column(name = "descripcionEvento", length = 100)
+    @Column(name = "ubicacion", length = 200)
+    private String ubicacion;
+
+    @Column(name = "descripcionEvento", length = 1000)
     private String descripcionEvento;
 
     @Column(name = "longitud")
-    private Long latitud;
+    private double latitud;
 
     @Column(name = "latitud")
-    private Long longitud;
+    private double longitud;
 
-    @Column(name = "historiaEvento", length = 100)
+    @Column(name = "historiaEvento", length = 1000)
     private String historiaEvento;
 
     @Column(name = "fechaInicioEvento")
@@ -48,6 +51,9 @@ public class Event {
 
     @Column(name = "fechaFinEvento")
     private Date fechaFinEvento;
+
+    @Column(name = "permanente")
+    private boolean permanente;
 
     @ManyToOne
     @JsonBackReference("referenceA")
@@ -62,6 +68,14 @@ public class Event {
     @OneToMany(mappedBy = "codEvento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Favorite> idFavorite;
 
+    public void setUbicacion(String ubicacion){
+        this.ubicacion = ubicacion;
+    }
+
+    public String getUbicacion(){
+        return this.ubicacion;
+    }
+
     public Category getIdTipoEvento(){
         return this.idTipoEvento;
     }
@@ -72,6 +86,14 @@ public class Event {
 
     public long getCodEvento(){
         return this.codEvento;
+    }
+
+    public boolean getPermenente(){
+        return this.permanente;
+    }
+
+    public void setPermanente(boolean permanent){
+        this.permanente = permanent;
     }
 
     public void setCategory(Category cat){
@@ -99,19 +121,19 @@ public class Event {
         this.descripcionEvento = descripcionEvento;
     }
 
-    public void setLatitud(Long latitud){
+    public void setLatitud(double latitud){
         this.latitud = latitud;
     }
 
-    public Long getLatitud(){
+    public double getLatitud(){
         return this.latitud;
     }
 
-    public void setLongitud(Long longitud){
+    public void setLongitud(double longitud){
         this.longitud = longitud;
     }
 
-    public Long getLongitud(){
+    public double getLongitud(){
         return this.longitud;
     }
 
