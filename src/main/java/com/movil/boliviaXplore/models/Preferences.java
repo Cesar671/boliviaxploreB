@@ -44,6 +44,10 @@ public class Preferences {
         this.user = user;
     }
 
+    public void setIdPreferences(Long idPreferences){
+        this.idPreferences = idPreferences;
+    }
+
     public Long getIdPreferences(){
         return this.idPreferences;
     }
