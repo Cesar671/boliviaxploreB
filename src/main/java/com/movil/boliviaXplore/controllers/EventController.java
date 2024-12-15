@@ -84,7 +84,7 @@ public class EventController {
     }
 
     @PostMapping("/registerevent")
-    public ResponseEntity<Event> createEvent2(@RequestBody Event event) {
+    public ResponseEntity<Event> newEvent(@RequestBody Event event) {
         System.out.println("entra al servidor");
         try{
             Event savedEvent = eventServiceImplement.saveEvent(event);
