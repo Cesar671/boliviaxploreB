@@ -83,6 +83,17 @@ public class EventController {
         }
     }
 
+    @PostMapping("/registerevent")
+    public ResponseEntity<Event> createEvent2(@RequestBody Event event) {
+        System.out.println("entra al servidor");
+        try{
+            Event savedEvent = eventServiceImplement.saveEvent(event);
+            return new ResponseEntity<>(savedEvent, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     /*@PostMapping("/register")
     public ResponseEntity<Event> createEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> multipartFile) {
         System.out.println("entra al servidor");
