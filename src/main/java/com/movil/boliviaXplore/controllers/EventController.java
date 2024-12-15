@@ -1,6 +1,7 @@
 package com.movil.boliviaXplore.controllers;
 
 import com.movil.boliviaXplore.DTO.EventDTO;
+import com.movil.boliviaXplore.models.Category;
 import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.services.EventFilter;
 import com.movil.boliviaXplore.services.EventServiceImplement;
@@ -70,6 +71,17 @@ public class EventController {
         return new ResponseEntity<>(eventUpdated, HttpStatus.OK);
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<Event> createEvent(@RequestPart("event") Event event) {
+        System.out.println("entra al servidor");
+        try{
+            Event savedEvent = eventServiceImplement.saveEvent(event);
+            return new ResponseEntity<>(savedEvent, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     /*@PostMapping("/register")
     public ResponseEntity<Event> createEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> multipartFile) {
         System.out.println("entra al servidor");
@@ -80,8 +92,40 @@ public class EventController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }*/
-    @PostMapping("/register")
-    public ResponseEntity<Event> createEvent(@RequestBody Event event) {
+   /* @PostMapping("/register")
+    public ResponseEntity<Event> createEvent(@RequestBody Map <String, Object> payload) {
+        Event event = new Event();
+        event.setNombreEvento(payload.get("nombreEvento").toString());
+        event.setDescripcionEvento(payload.get("descripcionEvento").toString());
+        event.setUbicacion(payload.get("ubicacion").toString());
+        event.setHistoriaEvento(payload.get("historiaEvento").toString());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Object dateobj = payload.get("fechaInicioEvento");
+        Object dateobj2 = payload.get("fechaFinEvento");
+        String date = dateobj != null ? dateobj.toString():null;
+        String date2 = dateobj2 != null ? dateobj.toString():null;
+        Date fecha = null;
+        Date fecha2 = null;
+        try{
+            if (date != null) {
+                fecha = formatter.parse(date);
+            }
+            if(date2 != null){
+                fecha2 = formatter.parse(date2);
+            }
+
+        } catch(Exception e){
+            System.out.println("error de conversion de fecha");
+        }
+        
+        event.setFechaInicioEvento(fecha);
+        event.setFechaFinEvento(fecha2);
+        event.setLongitud((double) payload.get("longitud"));
+        event.setLatitud((double) payload.get("latitud"));
+        event.setPermanente((boolean) payload.get("permanente"));
+        Category category = new Category();
+        category.setIdTipoEvento(payload.get("idTipoEvento").);
+        event.setIdTipoEvento(new Category());
         try{
             Event savedEvent = eventServiceImplement.saveEvent(event);
             return new ResponseEntity<>(savedEvent, HttpStatus.OK);
@@ -89,7 +133,7 @@ public class EventController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
+*/
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteEvent(@PathVariable("id") Long codEvento){
         try{
