@@ -18,6 +18,7 @@ import com.movil.boliviaXplore.services.filter.distance.HaversineDistance;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,7 @@ public class EventController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Event> createEvent(@RequestPart("event") Event event) {
+    public ResponseEntity<Event> createEvent(@RequestBody Event event) {
         System.out.println("entra al servidor");
         try{
             Event savedEvent = eventServiceImplement.saveEvent(event);
