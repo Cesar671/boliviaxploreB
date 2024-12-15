@@ -75,9 +75,7 @@ public class EventController {
 
     @PostMapping("/registerimage/{id}")
     public ResponseEntity<List<Image>> updateImage(@PathVariable("id") Long id, @RequestPart("images") List<MultipartFile> files){
-
-        System.out.println(id+" ");
-        System.out.println(files.size()+" ");
+        this.eventServiceImplement.saveImages(files, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
