@@ -80,6 +80,7 @@ public class EventController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }*/
+    @PostMapping("/register")
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
         try{
             Event savedEvent = eventServiceImplement.saveEvent(event);
@@ -88,7 +89,7 @@ public class EventController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteEvent(@PathVariable("id") Long codEvento){
         try{
