@@ -13,6 +13,9 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import jakarta.persistence.FetchType;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -44,6 +47,9 @@ public class User {
 
     @Column(name = "authProvider")
     private String authProvider;
+
+    @Column(name = "password")
+    private String password;
     
     @OneToMany(mappedBy = "codUsuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference("referenceUserA")
@@ -52,6 +58,14 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPreferences")
     private Preferences preferences;
+
+    public void setPassword(String password){
+        this.password = new BCryptPasswordEncoder().encode(password);
+    }
+
+    public String getPassword(){
+        return this.password;
+    }
 
     public List<Favorite> getIdFavorite(){
         return this.idFavorite;
