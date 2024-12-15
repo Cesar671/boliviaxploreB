@@ -9,11 +9,14 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import com.movil.boliviaXplore.models.Image;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.Collections;
+import java.util.Map;
 
 @Service
 public class EventServiceImplement implements EventService {
@@ -83,7 +86,7 @@ public class EventServiceImplement implements EventService {
     }
 
     @Override
-    public List<Integer> getEventDaysInMonth(int year, int month){
+    public Map<Integer, List<Event>> getEventDaysInMonth(int year, int month){
         LocalDate startDate = LocalDate.of(year, month, 1);
         LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
 
@@ -96,7 +99,10 @@ public class EventServiceImplement implements EventService {
 
         // Extraer los días únicos
         Set<Integer> days = new HashSet<>();
+        Map<Integer, List<Event>> eventosPorDia = new HashMap<>();
+
         for (Event event : events) {
+            // Convertir las fechas de inicio y fin del evento a LocalDate
             LocalDate startEvent = event.getFechaInicioEvento()
                     .toInstant()
                     .atZone(ZoneId.systemDefault())
@@ -109,17 +115,26 @@ public class EventServiceImplement implements EventService {
 
             // Recorrer todos los días entre el rango de inicio y fin del evento
             while (!startEvent.isAfter(endEvent)) {
+                // Solo agregar días dentro del rango especificado (startDate, endDate)
                 if (!startEvent.isBefore(startDate) && !startEvent.isAfter(endDate)) {
-                    days.add(startEvent.getDayOfMonth());
+                    int dia = startEvent.getDayOfMonth(); // Obtener el día como número entero
+
+                    // Agregar el día al conjunto de días
+                    days.add(dia);
+
+                    // Si no existe la lista de eventos para este día, inicializarla
+                    eventosPorDia.computeIfAbsent(dia, k -> new LinkedList<>());
+
+                    // Agregar el evento a la lista del día correspondiente
+                    eventosPorDia.get(dia).add(event);
                 }
+
+                // Avanzar al siguiente día
                 startEvent = startEvent.plusDays(1);
             }
         }
-
-        // Ordenar los días
-        List<Integer> sortedDays = new ArrayList<>(days);
-        Collections.sort(sortedDays);
-        return sortedDays;
+        // Retornar la lista de días ordenados
+        return eventosPorDia;
     }
 
 }
