@@ -37,6 +37,7 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.springframework.web.bind.annotation.PutMapping;
+import com.movil.boliviaXplore.models.Image;
 
 
 
@@ -70,6 +71,14 @@ public class EventController {
     public ResponseEntity<Event> updateEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> files) {
         Event eventUpdated = eventServiceImplement.updateEvent(event, files);
         return new ResponseEntity<>(eventUpdated, HttpStatus.OK);
+    }
+
+    @PostMapping("/registerimage/{id}")
+    public ResponseEntity<List<Image>> updateImage(@PathVariable("id") Long id, @RequestPart("images") List<MultipartFile> files){
+
+        System.out.println(id+" ");
+        System.out.println(files.size()+" ");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/register")

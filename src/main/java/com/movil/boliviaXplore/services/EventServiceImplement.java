@@ -46,14 +46,17 @@ public class EventServiceImplement implements EventService {
 
     @Override
     public Event saveEvent(Event event){
-        Event addedEvent = null;
-        try{
-            addedEvent = this.eventRepository.save(event);
-            /*for (MultipartFile multipartFile : multipartFiles) {
-                this.imageService.uploadImage(multipartFile, addedEvent);
-            }*/
-        } catch (Exception e){ System.out.println(e.getMessage()); }
+        Event addedEvent = this.eventRepository.save(event);
         return addedEvent;
+    }
+
+    public void saveImages(List<MultipartFile> files,Long eventId){
+        Event event = this.eventRepository.findById(eventId).get();
+        try{
+            for (MultipartFile multipartFile : files) {
+                this.imageService.uploadImage(multipartFile, event);
+            }
+        } catch (Exception e){ System.out.println(e.getMessage()); }
     }
 
     @Override
