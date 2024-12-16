@@ -66,15 +66,25 @@ public class EventController {
         return new ResponseEntity<>(recomendatedEvent, HttpStatus.OK);
     }
 
+    @PostMapping("/registerimage/{id}")
+    public ResponseEntity<List<Image>> createImage(@PathVariable("id") Long id, @RequestPart("images") List<MultipartFile> files){
+        this.eventServiceImplement.saveImages(files, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PutMapping("/update")
-    public ResponseEntity<Event> updateEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> files) {
-        Event eventUpdated = eventServiceImplement.updateEvent(event, files);
+    public ResponseEntity<Event> updateEvent(@RequestBody Event event) {
+        Event eventUpdated = eventServiceImplement.updateEvent(event);
         return new ResponseEntity<>(eventUpdated, HttpStatus.OK);
     }
 
-    @PostMapping("/registerimage/{id}")
-    public ResponseEntity<List<Image>> updateImage(@PathVariable("id") Long id, @RequestPart("images") List<MultipartFile> files){
-        this.eventServiceImplement.saveImages(files, id);
+    @PutMapping("/update-image/{id}")
+    public ResponseEntity<List<Image>> updateImages(@PathVariable("id") Long id, @RequestPart("images") List<MultipartFile> files){
+        try{
+            this.eventServiceImplement.updateImages(files, id);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -89,58 +99,6 @@ public class EventController {
         }
     }
 
-    /*@PostMapping("/register")
-    public ResponseEntity<Event> createEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> multipartFile) {
-        System.out.println("entra al servidor");
-        try{
-            Event savedEvent = eventServiceImplement.saveEvent(event, multipartFile);
-            return new ResponseEntity<>(savedEvent, HttpStatus.OK);
-        } catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }*/
-   /* @PostMapping("/register")
-    public ResponseEntity<Event> createEvent(@RequestBody Map <String, Object> payload) {
-        Event event = new Event();
-        event.setNombreEvento(payload.get("nombreEvento").toString());
-        event.setDescripcionEvento(payload.get("descripcionEvento").toString());
-        event.setUbicacion(payload.get("ubicacion").toString());
-        event.setHistoriaEvento(payload.get("historiaEvento").toString());
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Object dateobj = payload.get("fechaInicioEvento");
-        Object dateobj2 = payload.get("fechaFinEvento");
-        String date = dateobj != null ? dateobj.toString():null;
-        String date2 = dateobj2 != null ? dateobj.toString():null;
-        Date fecha = null;
-        Date fecha2 = null;
-        try{
-            if (date != null) {
-                fecha = formatter.parse(date);
-            }
-            if(date2 != null){
-                fecha2 = formatter.parse(date2);
-            }
-
-        } catch(Exception e){
-            System.out.println("error de conversion de fecha");
-        }
-        
-        event.setFechaInicioEvento(fecha);
-        event.setFechaFinEvento(fecha2);
-        event.setLongitud((double) payload.get("longitud"));
-        event.setLatitud((double) payload.get("latitud"));
-        event.setPermanente((boolean) payload.get("permanente"));
-        Category category = new Category();
-        category.setIdTipoEvento(payload.get("idTipoEvento").);
-        event.setIdTipoEvento(new Category());
-        try{
-            Event savedEvent = eventServiceImplement.saveEvent(event);
-            return new ResponseEntity<>(savedEvent, HttpStatus.OK);
-        } catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-*/
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteEvent(@PathVariable("id") Long codEvento){
         try{
@@ -150,7 +108,6 @@ public class EventController {
         } catch(Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        
     }
 
     //DTO added

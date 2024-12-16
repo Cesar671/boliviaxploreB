@@ -24,7 +24,7 @@ public class UserController {
     UserServiceImplement userServiceImplement;
 
     @PostMapping("/create")
-    public ResponseEntity<User> login(@RequestBody Map<String, Object> entity) {
+    public ResponseEntity<User> createUser(@RequestBody Map<String, Object> entity) {
         String name =  entity.get("name").toString();
         String email = entity.get("email").toString();
         String urlFoto = entity.get("urlFoto").toString();

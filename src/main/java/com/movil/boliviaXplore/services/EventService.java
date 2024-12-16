@@ -13,5 +13,6 @@ public interface EventService {
     Event getEvent(Long id);
     List<Event> getAllEvents();
     Map<Integer, List<Event>> getEventDaysInMonth(int year, int month);
-    Event updateEvent(Event event, List<MultipartFile> file);
+    Event updateEvent(Event event);
+    void updateImages(List<MultipartFile> files, long idEvent) throws IOException;
 }

@@ -63,6 +63,7 @@ public class UserServiceImplement implements UserService{
             user = new User();
             user.setNombreUsuario(name);
             user.setCorreoUsuario(email);
+            user.setPassword(email);
             user.setFotoUsuario(urlFoto);
             user.setGoogleId(googleId);
             user.setAuthProvider(authProvider);

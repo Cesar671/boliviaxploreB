@@ -3,8 +3,11 @@ package com.movil.boliviaXplore.services;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.movil.boliviaXplore.models.Event;
+import com.movil.boliviaXplore.models.Favorite;
 import com.movil.boliviaXplore.repository.EventRepository;
+import com.movil.boliviaXplore.repository.FavoriteRepository;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -17,19 +20,22 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class EventServiceImplement implements EventService {
     private final EventRepository eventRepository;
     private final ImageService imageService;
-    public EventServiceImplement(EventRepository eventRepository, ImageService imageService){
+    private final FavoriteRepository favoriteRepository;
+    public EventServiceImplement(EventRepository eventRepository, ImageService imageService, FavoriteRepository favoriteRepository){
         this.eventRepository = eventRepository;
         this.imageService = imageService;
+        this.favoriteRepository = favoriteRepository;
     }
 
     //faltan las imagenes
     @Override
-    public Event updateEvent(Event eventNewData, List<MultipartFile> files) {  
+    public Event updateEvent(Event eventNewData) {  
         Long idEvent = eventNewData.getCodEvento();
         Event eventMatched = this.eventRepository.findById(idEvent).map( e -> {
             e.setNombreEvento(eventNewData.getNombreEvento());
@@ -45,6 +51,25 @@ public class EventServiceImplement implements EventService {
             return eventRepository.save(e);
         }).get();
         return eventMatched;
+    }
+
+    @Override 
+    public void updateImages(List<MultipartFile> files, long idEvent) throws IOException{
+        Optional<Event> eventOptional = this.eventRepository.findById(idEvent);
+        if(eventOptional.isPresent()){
+            Event event = eventOptional.get();
+            List<Image> images = event.getImagenes();
+            this.deleteAllImages(images);
+            this.saveImages(files, idEvent);
+        } else {
+            throw new IOException();
+        }
+    }
+
+    private void deleteAllImages(List<Image> images) throws IOException{
+        for (Image image : images) {
+            imageService.deleteImage(image);
+        }
     }
 
     @Override
@@ -75,14 +100,20 @@ public class EventServiceImplement implements EventService {
     @Override
     public void deleteEvent(Event event){
         List<Image> images = event.getImagenes();
+        List<Favorite> favorites = event.getIdFavorite();
         try{
-            for (Image image : images) {
-                this.imageService.deleteImage(image);
-            }
+            this.deleteAllImages(images);
+            this.deleteAllFavorites(favorites);
             eventRepository.delete(event);
         } catch(Exception e){
             System.out.println(e.getMessage()+" error de la imagen");
         } 
+    }
+
+    private void deleteAllFavorites(List<Favorite> favorites){
+        for (Favorite favorite : favorites) {
+            this.favoriteRepository.delete(favorite);
+        }
     }
 
     @Override
