@@ -1,6 +1,7 @@
 package com.movil.boliviaXplore.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import com.movil.boliviaXplore.repository.ImageRepository;
@@ -27,6 +28,7 @@ public class ImageServiceImplement implements ImageService {
         return imageRepository.save(image);
     }
 
+    @Transactional
     @Override
     public void deleteImage(Image image) throws IOException{
         this.cloudinaryService.delete(image.getImageId());

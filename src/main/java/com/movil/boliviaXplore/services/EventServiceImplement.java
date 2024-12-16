@@ -1,6 +1,7 @@
 package com.movil.boliviaXplore.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.movil.boliviaXplore.models.Category;
@@ -83,8 +84,12 @@ public class EventServiceImplement implements EventService {
     private void deleteAllImages(List<Image> images){
         try{
             for (Image image : images) {
-                Image registredImage = this.imageRepository.findById(image.getCodImagen()).get();
-                imageService.deleteImage(registredImage);
+                Optional<Image> optionalImage = this.imageRepository.findById(image.getCodImagen());
+                if (optionalImage.isPresent()) {
+                    imageService.deleteImage(optionalImage.get());
+                } else {
+                    System.out.println("Imagen no encontrada con ID: " + image.getCodImagen());
+                }
             }
         } catch(IOException e){
             System.out.println(e.getMessage());
@@ -128,7 +133,7 @@ public class EventServiceImplement implements EventService {
             System.out.println(e.getMessage()+" error de la imagen");
         } 
     }
-
+    @Transactional
     private void deleteAllFavorites(List<Favorite> favorites){
         for (Favorite favorite : favorites) {
             this.favoriteRepository.delete(favorite);
