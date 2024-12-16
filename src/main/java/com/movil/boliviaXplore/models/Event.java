@@ -65,7 +65,7 @@ public class Event {
     private List<Image> imagenes;
 
     @JsonManagedReference("referenceB")
-    @OneToMany(mappedBy = "codEvento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "codEvento", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Favorite> idFavorite;
 
     public void setUbicacion(String ubicacion){

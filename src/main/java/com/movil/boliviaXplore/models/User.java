@@ -51,7 +51,7 @@ public class User {
     @Column(name = "password")
     private String password;
     
-    @OneToMany(mappedBy = "codUsuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "codUsuario", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JsonManagedReference("referenceUserA")
     private List<Favorite> idFavorite;
 
