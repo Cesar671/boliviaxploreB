@@ -29,7 +29,8 @@ public class FavoriteServiceImplement implements FavoriteService {
 
     @Override
     public Favorite setFavorite(Long codEvent, Long codUser){
-        if(this.favoriteRepository.findByCodEvento_CodEventoAndCodUsuario_CodUsuario(codEvent, codUser) == null){
+        Optional<Favorite> favoriteOptional = this.favoriteRepository.findByCodEvento_CodEventoAndCodUsuario_CodUsuario(codEvent, codUser);
+        if(!favoriteOptional.isPresent()){
             Event event = eventRepository.findById(codEvent).get();
             User usuario = userRepository.findById(codUser).get();
 
@@ -44,10 +45,9 @@ public class FavoriteServiceImplement implements FavoriteService {
 
     @Override
     @Transactional
-    public void deleteFavorite(Long idFavorite){
-        Optional <Favorite> favoriteOptional = this.favoriteRepository.findById(idFavorite);
+    public void deleteFavorite(Long codEvent, Long codUser){
+        Optional <Favorite> favoriteOptional = this.favoriteRepository.findByCodEvento_CodEventoAndCodUsuario_CodUsuario(codEvent, codUser);
         if (favoriteOptional.isPresent()) {
-
             this.favoriteRepository.delete(favoriteOptional.get());
         } else {
             System.out.println("no se encontró el registro de favorito");

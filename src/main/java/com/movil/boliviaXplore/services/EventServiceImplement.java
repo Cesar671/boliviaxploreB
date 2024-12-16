@@ -122,16 +122,23 @@ public class EventServiceImplement implements EventService {
     }
 
     @Override
-    public void deleteEvent(Event event){
-        List<Image> images = event.getImagenes();
-        List<Favorite> favorites = event.getIdFavorite();
-        try{
-            this.deleteAllImages(images);
-            this.deleteAllFavorites(favorites);
-            eventRepository.delete(event);
-        } catch(Exception e){
-            System.out.println(e.getMessage()+" error de la imagen");
-        } 
+    public void deleteEvent(long codEvent){
+        Optional<Event> eventOptional = this.eventRepository.findById(codEvent);
+        if(eventOptional.isPresent()){
+            Event event = eventOptional.get();
+            List<Image> images = event.getImagenes();
+            List<Favorite> favorites = event.getIdFavorite();
+            try{
+                this.deleteAllImages(images);
+                this.deleteAllFavorites(favorites);
+                eventRepository.delete(event);
+            } catch(Exception e){
+                System.out.println(e.getMessage()+" error de la imagen");
+            } 
+        } else {
+            System.out.println(" el evento no existe");
+        }
+       
     }
     @Transactional
     private void deleteAllFavorites(List<Favorite> favorites){

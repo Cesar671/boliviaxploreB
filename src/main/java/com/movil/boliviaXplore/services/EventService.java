@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface EventService {
     Event saveEvent(Event event) throws IOException;
-    void deleteEvent(Event event) throws IOException;
+    void deleteEvent(long codEvent) throws IOException;
     Event getEvent(Long id);
     List<Event> getAllEvents();
     Map<Integer, List<Event>> getEventDaysInMonth(int year, int month);

@@ -102,8 +102,7 @@ public class EventController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteEvent(@PathVariable("id") Long codEvento){
         try{
-            Event event = eventServiceImplement.getEvent(codEvento);
-            eventServiceImplement.deleteEvent(event);
+            eventServiceImplement.deleteEvent(codEvento);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch(Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -134,9 +133,12 @@ public class EventController {
     }
 
     @DeleteMapping("/mark-favorite/{id}")
-    public ResponseEntity<Favorite> deleteFavorite(@PathVariable("id") long idFavorite){
+    public ResponseEntity<Favorite> deleteFavorite(@RequestBody Map<String, Object> payload){
+        Long codUsuario = ((Number) payload.get("codEvento")).longValue();
+        Long codEvento = ((Number) payload.get("codUsuario")).longValue();
+
         try{
-            this.favoriteServiceImplement.deleteFavorite(idFavorite);
+            this.favoriteServiceImplement.deleteFavorite(codUsuario, codEvento);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
