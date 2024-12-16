@@ -143,7 +143,7 @@ public class EventServiceImplement implements EventService {
   
     private void deleteAllFavorites(List<Favorite> favorites){
         for (Favorite favorite : favorites) {
-            Optional<Favorite> fav = this.favoriteRepository.findById(favorite.getIdFavorite());
+            Optional<Favorite> fav = this.favoriteRepository.findByCodEvento_CodEventoAndCodUsuario_CodUsuario(favorite.getCodEvento().getCodEvento(), favorite.getCodUsuario().getCodUsuario());
             if(fav.isPresent()){
                 Favorite f = fav.get();
                 this.favoriteRepository.delete(f);
