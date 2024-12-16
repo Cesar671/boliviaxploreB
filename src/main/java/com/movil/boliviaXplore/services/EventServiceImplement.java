@@ -133,6 +133,7 @@ public class EventServiceImplement implements EventService {
                 this.deleteAllFavorites(favorites);
                 eventRepository.delete(event);
             } catch(Exception e){
+                eventRepository.delete(event);
                 System.out.println(e.getMessage()+" error de la imagen");
             } 
         } else {
