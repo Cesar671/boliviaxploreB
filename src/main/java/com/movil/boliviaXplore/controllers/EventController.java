@@ -132,7 +132,7 @@ public class EventController {
         }
     }
 
-    @DeleteMapping("/mark-favorite/{id}")
+    @DeleteMapping("/mark-favorite")
     public ResponseEntity<Favorite> deleteFavorite(@RequestBody Map<String, Object> payload){
         Long codUsuario = ((Number) payload.get("codEvento")).longValue();
         Long codEvento = ((Number) payload.get("codUsuario")).longValue();

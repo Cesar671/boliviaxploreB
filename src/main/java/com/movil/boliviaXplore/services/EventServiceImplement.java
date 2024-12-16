@@ -140,11 +140,17 @@ public class EventServiceImplement implements EventService {
         }
        
     }
-    @Transactional
+  
     private void deleteAllFavorites(List<Favorite> favorites){
         for (Favorite favorite : favorites) {
-            Favorite fav = this.favoriteRepository.findById(favorite.getIdFavorite()).get();
-            this.favoriteRepository.delete(fav);
+            Optional<Favorite> fav = this.favoriteRepository.findById(favorite.getIdFavorite());
+            if(fav.isPresent()){
+                Favorite f = fav.get();
+                this.favoriteRepository.delete(f);
+            } else {
+                System.out.println("no se encontró el favorito");
+            }
+            
         }
     }
 
