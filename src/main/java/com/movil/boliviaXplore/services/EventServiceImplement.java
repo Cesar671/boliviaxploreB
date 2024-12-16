@@ -136,7 +136,8 @@ public class EventServiceImplement implements EventService {
     @Transactional
     private void deleteAllFavorites(List<Favorite> favorites){
         for (Favorite favorite : favorites) {
-            this.favoriteRepository.delete(favorite);
+            Favorite fav = this.favoriteRepository.findById(favorite.getIdFavorite()).get();
+            this.favoriteRepository.delete(fav);
         }
     }
 
