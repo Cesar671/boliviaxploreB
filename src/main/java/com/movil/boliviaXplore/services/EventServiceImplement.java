@@ -80,10 +80,14 @@ public class EventServiceImplement implements EventService {
         }
     }
 
-    private void deleteAllImages(List<Image> images) throws IOException{
-        for (Image image : images) {
-            Image registredImage = this.imageRepository.findById(image.getCodImagen()).get();
-            imageService.deleteImage(registredImage);
+    private void deleteAllImages(List<Image> images){
+        try{
+            for (Image image : images) {
+                Image registredImage = this.imageRepository.findById(image.getCodImagen()).get();
+                imageService.deleteImage(registredImage);
+            }
+        } catch(IOException e){
+            System.out.println(e.getMessage());
         }
     }
 
