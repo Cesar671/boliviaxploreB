@@ -9,6 +9,7 @@ import com.movil.boliviaXplore.models.Favorite;
 import com.movil.boliviaXplore.repository.CategoryRepository;
 import com.movil.boliviaXplore.repository.EventRepository;
 import com.movil.boliviaXplore.repository.FavoriteRepository;
+import com.movil.boliviaXplore.repository.ImageRepository;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -31,15 +32,18 @@ public class EventServiceImplement implements EventService {
     private final ImageService imageService;
     private final FavoriteRepository favoriteRepository;
     private final CategoryRepository categoryRepository;
+    private final ImageRepository imageRepository;
     public EventServiceImplement(
                     EventRepository eventRepository, 
                     ImageService imageService, 
                     FavoriteRepository favoriteRepository,
-                    CategoryRepository categoryRepository){
+                    CategoryRepository categoryRepository,
+                    ImageRepository imageRepository){
         this.eventRepository = eventRepository;
         this.imageService = imageService;
         this.favoriteRepository = favoriteRepository;
         this.categoryRepository = categoryRepository;
+        this.imageRepository = imageRepository;
     }
 
     //faltan las imagenes
@@ -78,7 +82,8 @@ public class EventServiceImplement implements EventService {
 
     private void deleteAllImages(List<Image> images) throws IOException{
         for (Image image : images) {
-            imageService.deleteImage(image);
+            Image registredImage = this.imageRepository.findById(image.getCodImagen()).get();
+            imageService.deleteImage(registredImage);
         }
     }
 
