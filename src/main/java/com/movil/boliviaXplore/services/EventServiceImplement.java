@@ -131,9 +131,9 @@ public class EventServiceImplement implements EventService {
             try{
                 this.deleteAllImages(images);
                 this.deleteAllFavorites(favorites);
-                eventRepository.delete(event);
+                Event eventUpdated = this.eventRepository.findById(event.getCodEvento()).get();
+                eventRepository.delete(eventUpdated);
             } catch(Exception e){
-                eventRepository.delete(event);
                 System.out.println(e.getMessage()+" error de la imagen");
             } 
         } else {
