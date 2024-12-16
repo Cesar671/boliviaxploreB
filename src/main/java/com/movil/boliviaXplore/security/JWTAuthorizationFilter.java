@@ -15,18 +15,32 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
+    private final String PREFIX = "Bearer ";
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         String bearerToken = request.getHeader("Authorization");
 
-        if(bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            String token = bearerToken.replace("Bearer ", "");
+/*         if(bearerToken != null && bearerToken.startsWith(PREFIX)) {
+            String token = bearerToken.replace(PREFIX, "");
             UsernamePasswordAuthenticationToken upat = TokenUtils.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(upat);
+        }*/
+        if (bearerToken != null && bearerToken.startsWith(PREFIX)) {
+            String token = bearerToken.replace(PREFIX, "");
+            System.out.println("Token recibido: " + token);
+            UsernamePasswordAuthenticationToken upat = TokenUtils.getAuthentication(token);
+            if (upat != null) {
+                System.out.println("Autenticación exitosa");
+                SecurityContextHolder.getContext().setAuthentication(upat);
+            } else {
+                System.out.println("Autenticación fallida");
+            }
         }
 
         filterChain.doFilter(request, response);
     }
     
 }
+ 
