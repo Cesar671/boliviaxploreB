@@ -2,8 +2,11 @@ package com.movil.boliviaXplore.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.movil.boliviaXplore.models.Category;
 import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.models.Favorite;
+import com.movil.boliviaXplore.repository.CategoryRepository;
 import com.movil.boliviaXplore.repository.EventRepository;
 import com.movil.boliviaXplore.repository.FavoriteRepository;
 
@@ -27,15 +30,22 @@ public class EventServiceImplement implements EventService {
     private final EventRepository eventRepository;
     private final ImageService imageService;
     private final FavoriteRepository favoriteRepository;
-    public EventServiceImplement(EventRepository eventRepository, ImageService imageService, FavoriteRepository favoriteRepository){
+    private final CategoryRepository categoryRepository;
+    public EventServiceImplement(
+                    EventRepository eventRepository, 
+                    ImageService imageService, 
+                    FavoriteRepository favoriteRepository,
+                    CategoryRepository categoryRepository){
         this.eventRepository = eventRepository;
         this.imageService = imageService;
         this.favoriteRepository = favoriteRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     //faltan las imagenes
     @Override
     public Event updateEvent(Event eventNewData) {  
+        Category category = this.categoryRepository.findById(eventNewData.getIdTipoEvento().getIdTipoEvento()).get();
         Long idEvent = eventNewData.getCodEvento();
         Event eventMatched = this.eventRepository.findById(idEvent).map( e -> {
             e.setNombreEvento(eventNewData.getNombreEvento());
@@ -46,7 +56,7 @@ public class EventServiceImplement implements EventService {
             e.setFechaInicioEvento(eventNewData.getFechaInicioEvento());
             e.setFechaFinEvento(eventNewData.getFechaFinEvento());
             e.setPermanente(eventNewData.getPermenente());
-            e.setCategory(eventNewData.getIdTipoEvento());
+            e.setCategory(category);
             e.setUbicacion(eventNewData.getUbicacion());
             return eventRepository.save(e);
         }).get();
