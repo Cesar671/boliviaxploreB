@@ -7,6 +7,8 @@ import com.movil.boliviaXplore.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.movil.boliviaXplore.models.Event;
@@ -42,12 +44,13 @@ public class FavoriteServiceImplement implements FavoriteService {
 
     @Override
     @Transactional
-    public void deleteFavorite(Long codEvent, Long codUser){
-        Favorite favorite = this.favoriteRepository.findByCodEvento_CodEventoAndCodUsuario_CodUsuario(codEvent, codUser);
-        if (favorite != null) {
-            System.out.println("data:"+favorite.getIdFavorite()+" usuario:"+favorite.getCodUsuario().getCodUsuario()+" evento:"+favorite.getCodEvento().getCodEvento());
-            this.favoriteRepository.deleteById(favorite.getIdFavorite());
-            this.favoriteRepository.flush();
+    public void deleteFavorite(Long idFavorite){
+        Optional <Favorite> favoriteOptional = this.favoriteRepository.findById(idFavorite);
+        if (favoriteOptional.isPresent()) {
+
+            this.favoriteRepository.delete(favoriteOptional.get());
+        } else {
+            System.out.println("no se encontró el registro de favorito");
         }
     }
 
