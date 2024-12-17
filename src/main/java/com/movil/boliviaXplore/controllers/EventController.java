@@ -160,11 +160,11 @@ public class EventController {
                 fecha = formatter.parse(date);
             }
             System.out.println("Fecha: "+fecha+" "+payload.get("fecha"));
-            double distancia = (double) payload.get("distancia");
+            double distancia = Double.parseDouble(payload.get("distancia").toString());
             System.out.println(" distancia:"+distancia);
-            double longitud = (double) payload.get("longitud");
+            double longitud = Double.parseDouble(payload.get("longitud").toString());
             System.out.println(" longitu:"+longitud);
-            double latitud = (double) payload.get("latitud");
+            double latitud = Double.parseDouble(payload.get("latitud").toString());
             System.out.println(" latitud:"+latitud);
             String busqueda = (String) payload.get("busqueda");
             System.out.println(" busqueda:"+busqueda);
