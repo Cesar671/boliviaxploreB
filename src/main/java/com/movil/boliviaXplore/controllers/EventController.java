@@ -35,6 +35,8 @@ import java.util.Map;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
+
 import org.springframework.web.bind.annotation.PutMapping;
 import com.movil.boliviaXplore.models.Image;
 
@@ -147,7 +149,7 @@ public class EventController {
     }
     
     @PostMapping("/filtered")
-    public ResponseEntity<List<Event>> getFilteredEvents(@RequestBody Map<String, Object> payload){
+    public ResponseEntity<List> getFilteredEvents(@RequestBody Map<String, Object> payload){
         List<Event> eventos = eventServiceImplement.getAllEvents();
         try{ 
             boolean eventoActivo = (boolean) payload.get("eventoActivo");
@@ -197,7 +199,13 @@ public class EventController {
             }
 
             if(eventFilter.existsFilters()){
-                return new ResponseEntity<>(eventFilter.filter(eventos), HttpStatus.OK);
+                List<Event> eventosFiltrados = eventFilter.filter(eventos);
+                List<EventDTO> eventosDTO = new LinkedList<>();
+                for (Event event : eventosFiltrados) {
+                    EventDTO eventDTO = EventDTO.getInstance(event);
+                    eventosDTO.add(eventDTO);
+                }
+                return new ResponseEntity<>(eventosDTO, HttpStatus.OK);
             }
         } catch (Exception e){
             System.out.println(e.getMessage());
