@@ -148,7 +148,6 @@ public class EventController {
             Long idCategoria =(payload.get("categoria") != null) ? ((Number) payload.get("categoria")).longValue():null;
             boolean favorito = (boolean) payload.get("favorito");
             Long codUsuario = (payload.get("codUsuario") != null) ? ((Number) payload.get("codUsuario")).longValue():null;
-            System.out.println(" distancia: "+distancia+" eventoActivo: "+eventoActivo+" date:  "+date+" longitud "+longitud+" latitud: "+latitud+" b"+busqueda+" categoria:"+idCategoria+" favorito: "+favorito+" usuario:"+codUsuario);
             EventFilter eventFilter = new EventFilter();
             if(longitud != 0 && latitud != 0 && distancia != 0){
                 eventFilter.addFilter(new FilterByDistance(longitud, latitud, distancia, new HaversineDistance()));
