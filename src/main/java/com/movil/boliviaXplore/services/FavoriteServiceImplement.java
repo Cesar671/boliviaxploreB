@@ -7,6 +7,8 @@ import com.movil.boliviaXplore.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.movil.boliviaXplore.models.Event;
@@ -27,7 +29,8 @@ public class FavoriteServiceImplement implements FavoriteService {
 
     @Override
     public Favorite setFavorite(Long codEvent, Long codUser){
-        if(this.favoriteRepository.findByCodEvento_CodEventoAndCodUsuario_CodUsuario(codEvent, codUser) == null){
+        Optional<Favorite> favoriteOptional = this.favoriteRepository.findByCodEvento_CodEventoAndCodUsuario_CodUsuario(codEvent, codUser);
+        if(!favoriteOptional.isPresent()){
             Event event = eventRepository.findById(codEvent).get();
             User usuario = userRepository.findById(codUser).get();
 
@@ -43,11 +46,11 @@ public class FavoriteServiceImplement implements FavoriteService {
     @Override
     @Transactional
     public void deleteFavorite(Long codEvent, Long codUser){
-        Favorite favorite = this.favoriteRepository.findByCodEvento_CodEventoAndCodUsuario_CodUsuario(codEvent, codUser);
-        if (favorite != null) {
-            System.out.println("data:"+favorite.getIdFavorite()+" usuario:"+favorite.getCodUsuario().getCodUsuario()+" evento:"+favorite.getCodEvento().getCodEvento());
-            this.favoriteRepository.deleteById(favorite.getIdFavorite());
-            this.favoriteRepository.flush();
+        Optional <Favorite> favoriteOptional = this.favoriteRepository.findByCodEvento_CodEventoAndCodUsuario_CodUsuario(codEvent, codUser);
+        if (favoriteOptional.isPresent()) {
+            this.favoriteRepository.delete(favoriteOptional.get());
+        } else {
+            System.out.println("no se encontró el registro de favorito");
         }
     }
 

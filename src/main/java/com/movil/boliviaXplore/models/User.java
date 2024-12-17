@@ -14,7 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import jakarta.persistence.FetchType;
 
@@ -51,7 +51,7 @@ public class User {
     @Column(name = "password")
     private String password;
     
-    @OneToMany(mappedBy = "codUsuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "codUsuario", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JsonManagedReference("referenceUserA")
     private List<Favorite> idFavorite;
 
@@ -60,7 +60,7 @@ public class User {
     private Preferences preferences;
 
     public void setPassword(String password){
-        this.password = new BCryptPasswordEncoder().encode(password);
+        this.password = password;//new BCryptPasswordEncoder().encode(password);
     }
 
     public String getPassword(){
@@ -131,3 +131,4 @@ public class User {
         return this.codUsuario;
     }
 }
+

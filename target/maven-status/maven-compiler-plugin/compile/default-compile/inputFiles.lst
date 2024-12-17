@@ -22,13 +22,6 @@ F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\repo
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\repository\NotificationRepository.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\repository\PreferencesRepository.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\repository\UserRepository.java
-F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\security\AuthCredentials.java
-F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\security\JWTAuthenticationFilter.java
-F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\security\JWTAuthorizationFilter.java
-F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\security\TokenUtils.java
-F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\security\UserDetailsImplement.java
-F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\security\UserDetailsServiceImplement.java
-F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\security\WebSecurityConfig.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\CategoryService.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\CategoryServiceImplement.java
 F:\Descargas\iconos web\boliviaXplore\src\main\java\com\movil\boliviaXplore\services\CloudinaryService.java

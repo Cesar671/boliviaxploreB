@@ -24,7 +24,7 @@ public class Category {
     private Long idTipoEvento;
     @Column(name = "nombreTipoEvento", unique = true, length = 50)
     private String nombreCategoria;
-    @OneToMany(mappedBy = "idTipoEvento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "idTipoEvento", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JsonManagedReference("referenceA")
     private List<Event> events;
 

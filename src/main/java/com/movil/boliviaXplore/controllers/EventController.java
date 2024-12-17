@@ -1,6 +1,7 @@
 package com.movil.boliviaXplore.controllers;
 
 import com.movil.boliviaXplore.DTO.EventDTO;
+import com.movil.boliviaXplore.models.Category;
 import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.services.EventFilter;
 import com.movil.boliviaXplore.services.EventServiceImplement;
@@ -22,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,11 +36,12 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.stereotype.Controller;
+import com.movil.boliviaXplore.models.Image;
 
 
 
-@Controller
+
+@RestController
 @RequestMapping("/api/event")
 public class EventController {
     
@@ -65,16 +66,33 @@ public class EventController {
         return new ResponseEntity<>(recomendatedEvent, HttpStatus.OK);
     }
 
+    @PostMapping("/registerimage/{id}")
+    public ResponseEntity<List<Image>> createImage(@PathVariable("id") Long id, @RequestPart("images") List<MultipartFile> files){
+        this.eventServiceImplement.saveImages(files, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PutMapping("/update")
-    public ResponseEntity<Event> updateEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> files) {
-        Event eventUpdated = eventServiceImplement.updateEvent(event, files);
+    public ResponseEntity<Event> updateEvent(@RequestBody Event event) {
+        Event eventUpdated = eventServiceImplement.updateEvent(event);
         return new ResponseEntity<>(eventUpdated, HttpStatus.OK);
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<Event> createEvent(@RequestPart("event") Event event, @RequestPart("imagenes") List<MultipartFile> multipartFile) {
+    @PutMapping("/update-image/{id}")
+    public ResponseEntity<List<Image>> updateImages(@PathVariable("id") Long id, @RequestPart("images") List<MultipartFile> files){
         try{
-            Event savedEvent = eventServiceImplement.saveEvent(event, multipartFile);
+            this.eventServiceImplement.updateImages(files, id);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<Event> createEvent(@RequestBody Event event) {
+        System.out.println("entra al servidor");
+        try{
+            Event savedEvent = eventServiceImplement.saveEvent(event);
             return new ResponseEntity<>(savedEvent, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -84,13 +102,11 @@ public class EventController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteEvent(@PathVariable("id") Long codEvento){
         try{
-            Event event = eventServiceImplement.getEvent(codEvento);
-            eventServiceImplement.deleteEvent(event);
+            eventServiceImplement.deleteEvent(codEvento);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch(Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        
     }
 
     //DTO added
@@ -118,10 +134,11 @@ public class EventController {
 
     @DeleteMapping("/mark-favorite")
     public ResponseEntity<Favorite> deleteFavorite(@RequestBody Map<String, Object> payload){
+        Long codUsuario = ((Number) payload.get("codEvento")).longValue();
+        Long codEvento = ((Number) payload.get("codUsuario")).longValue();
+
         try{
-            Long codUsuario = ((Number) payload.get("codUsuario")).longValue();
-            Long codEvento = ((Number) payload.get("codEvento")).longValue();
-            this.favoriteServiceImplement.deleteFavorite(codEvento, codUsuario);
+            this.favoriteServiceImplement.deleteFavorite(codUsuario, codEvento);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -149,6 +166,7 @@ public class EventController {
             boolean favorito = (boolean) payload.get("favorito");
             Long codUsuario = (payload.get("codUsuario") != null) ? ((Number) payload.get("codUsuario")).longValue():null;
             EventFilter eventFilter = new EventFilter();
+            System.out.println(" distancia: "+distancia+" eventoActivo: "+eventoActivo+" date:  "+date+" longitud "+longitud+" latitud: "+latitud+" b"+busqueda+" categoria:"+idCategoria+" favorito: "+favorito+" usuario:"+codUsuario);
             if(longitud != 0 && latitud != 0 && distancia != 0){
                 eventFilter.addFilter(new FilterByDistance(longitud, latitud, distancia, new HaversineDistance()));
             }
@@ -181,8 +199,8 @@ public class EventController {
     }
   
     @GetMapping("/days-in-month/{year}/{month}")
-    public ResponseEntity<List<Integer>> getEventDaysInMonth(@PathVariable("year") int year, @PathVariable("month") int month) {
-        List<Integer> days = eventServiceImplement.getEventDaysInMonth(year, month);
+    public ResponseEntity<Map<Integer, List<Event>>> getEventDaysInMonth(@PathVariable("year") int year, @PathVariable("month") int month) {
+        Map<Integer, List<Event>> days = eventServiceImplement.getEventDaysInMonth(year, month);
         return ResponseEntity.ok(days);
     }
 }

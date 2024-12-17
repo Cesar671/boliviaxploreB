@@ -60,12 +60,12 @@ public class Event {
     @JoinColumn(name = "idTipoEvento", nullable = false)
     private Category idTipoEvento; 
 
-    @OneToMany(mappedBy = "codEvento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "codEvento", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JsonManagedReference("referenceC")
     private List<Image> imagenes;
 
     @JsonManagedReference("referenceB")
-    @OneToMany(mappedBy = "codEvento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "codEvento", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Favorite> idFavorite;
 
     public void setUbicacion(String ubicacion){

@@ -2,16 +2,13 @@ com\movil\boliviaXplore\loaders\DataUserLoader.class
 com\movil\boliviaXplore\models\Notification.class
 com\movil\boliviaXplore\services\filter\Filters\FilterByCategory.class
 com\movil\boliviaXplore\DTO\CategoryDTO.class
-com\movil\boliviaXplore\security\UserDetailsServiceImplement.class
 com\movil\boliviaXplore\services\filter\Filters\FilterBySearch.class
 com\movil\boliviaXplore\DTO\ImageDTO.class
 com\movil\boliviaXplore\models\Favorite.class
 com\movil\boliviaXplore\models\Image.class
 com\movil\boliviaXplore\services\UserService.class
-com\movil\boliviaXplore\security\UserDetailsImplement.class
 com\movil\boliviaXplore\models\Event.class
 com\movil\boliviaXplore\services\UserServiceImplement.class
-com\movil\boliviaXplore\security\TokenUtils.class
 com\movil\boliviaXplore\services\ImageService.class
 com\movil\boliviaXplore\services\filter\Filters\FilterNotFavorite.class
 com\movil\boliviaXplore\services\FavoriteService.class
@@ -22,8 +19,6 @@ com\movil\boliviaXplore\services\ImageServiceImplement.class
 com\movil\boliviaXplore\repository\CategoryRepository.class
 com\movil\boliviaXplore\repository\EventRepository.class
 com\movil\boliviaXplore\services\FavoriteServiceImplement.class
-com\movil\boliviaXplore\security\WebSecurityConfig.class
-com\movil\boliviaXplore\security\JWTAuthorizationFilter.class
 com\movil\boliviaXplore\models\Preferences.class
 com\movil\boliviaXplore\services\filter\distance\Distance.class
 com\movil\boliviaXplore\services\filter\Filters\FilterByDistance.class
@@ -45,8 +40,6 @@ com\movil\boliviaXplore\models\User.class
 com\movil\boliviaXplore\services\EventServiceImplement.class
 com\movil\boliviaXplore\services\NotificationService.class
 com\movil\boliviaXplore\services\RecomendationServiceImplement.class
-com\movil\boliviaXplore\security\AuthCredentials.class
-com\movil\boliviaXplore\security\JWTAuthenticationFilter.class
 com\movil\boliviaXplore\services\CategoryService.class
 com\movil\boliviaXplore\controllers\EventController.class
 com\movil\boliviaXplore\models\Category.class
