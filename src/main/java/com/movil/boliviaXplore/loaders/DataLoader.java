@@ -92,7 +92,7 @@ public class DataLoader implements ApplicationRunner{
                                          true,
                                          a, 
                                          b, 
-                                         3);
+                                         2);
             this.registerImage("kc3vzmeezagedwv8qiyi", 
             "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734445190/kc3vzmeezagedwv8qiyi.jpg", 
             "kc3vzmeezagedwv8qiyi", 
@@ -213,7 +213,7 @@ public class DataLoader implements ApplicationRunner{
                                          true,
                                          a, 
                                          b, 
-                                         3);
+                                         2);
                     this.registerImage("kxb74wgpj6eyiilrt1dm", 
             "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734446412/kxb74wgpj6eyiilrt1dm.jpg", 
             "kxb74wgpj6eyiilrt1dm", 
@@ -305,7 +305,7 @@ public class DataLoader implements ApplicationRunner{
                                          true,
                                          a, 
                                          b, 
-                                         3);
+                                         2);
                 this.registerImage("hie0iuct8japyvacfyad", 
             "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734447824/hie0iuct8japyvacfyad.jpg", 
             "hie0iuct8japyvacfyad", 
@@ -332,7 +332,7 @@ public class DataLoader implements ApplicationRunner{
                                          true,
                                          a, 
                                          b, 
-                                         3);
+                                         2);
                                          this.registerImage("qdhs3yl4hj5kqrhfefgh", 
             "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734448032/qdhs3yl4hj5kqrhfefgh.jpg", 
             "qdhs3yl4hj5kqrhfefgh", 
@@ -354,7 +354,7 @@ public class DataLoader implements ApplicationRunner{
                                          true,
                                          a, 
                                          b, 
-                                         3);
+                                         2);
                                          this.registerImage("dfipquqv9zrr7p6te8gf", 
             "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734448330/dfipquqv9zrr7p6te8gf.jpg", 
             "dfipquqv9zrr7p6te8gf", 
@@ -601,6 +601,73 @@ public class DataLoader implements ApplicationRunner{
             "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734454605/cmd7muafq9tnaekhimhb.jpg", 
             "cmd7muafq9tnaekhimhb", 
             eventGetted23);
+            LocalDate a7 = LocalDate.of(2025, 10, 8);
+            LocalDate b7 = LocalDate.of(2025, 10, 11);
+            Event eventGetted24 = this.registerEvent(
+                "Festividad de la Virgen del Rosario",
+                "La Virgen del Rosario es una advocación de María venerada por la Iglesia católica. Es Patrona de la Orden de Predicadores", 
+                ""
+                                        , 
+                                        -17.396420504398243, -66.17358388305826,
+                                         true,
+                                         a7, 
+                                         b7, 
+                                         1);
+                this.registerImage("ojbixlewnklvfe5irf1d", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734458168/ojbixlewnklvfe5irf1d.jpg", 
+            "ojbixlewnklvfe5irf1d", 
+            eventGetted24);
+            LocalDate a8 = LocalDate.of(2024, 12, 7);
+            LocalDate b8 = LocalDate.of(2024, 12, 7);
+            Event eventGetted25 = this.registerEvent(
+                "Feria del gustito familiar ",
+                "Venga a degustar de la comida mas deliciosa en familia. Hora inicio: 19:00\r\n" + //
+                                        "- Lugar: Plaza principal de Cliza \r\n" + //
+                                        "- Transporte: Parada av. Barrientos esq. Manuripi", 
+                ""
+                                        , 
+                                        -17.59171647807783, -65.93399512883536,
+                                         false,
+                                         a8, 
+                                         b8, 
+                                         6);
+                this.registerImage("yykqfsbiwtqd4fagp0qr", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734462198/yykqfsbiwtqd4fagp0qr.jpg", 
+            "yykqfsbiwtqd4fagp0qr", 
+            eventGetted25);
+
+            LocalDate a9 = LocalDate.of(2024, 12, 8);
+            LocalDate b9 = LocalDate.of(2024, 12, 8);
+            Event eventGetted26 = this.registerEvent(
+                "Feria agropecuaria, ambrosía y comidas típicas  ",
+                " Día: Domingo 8 de diciembre - Hora inicio: 08:00 - Lugar: Sindicato agrario Callajchullpa, municipio de Colcapirhua ", 
+                ""
+                                        , 
+                                        -17.354030475215374, -66.24261991534144,
+                                         false,
+                                         a9, 
+                                         b9, 
+                                         6);
+                this.registerImage("yykqfsbiwtqd4fagp0qr", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734462198/yykqfsbiwtqd4fagp0qr.jpg", 
+            "yykqfsbiwtqd4fagp0qr", 
+            eventGetted26);
+            LocalDate a10 = LocalDate.of(2024, 12, 8);
+            LocalDate b10 = LocalDate.of(2024, 12, 8);
+            Event eventGetted27 = this.registerEvent(
+                "Feria del pato y conejo ",
+                "Venga a degustar de la comida mas deliciosa en familia. HDía: Domingo 8 de diciembre - Hora inicio: 09:00 - Lugar: Cancha deportiva de Molino Blanco, municipio de Sacaba - Transporte: Líneas 233, 241 color blanco ", 
+                ""
+                                        , 
+                                        -17.395608494624163, -65.98737394232927,
+                                         false,
+                                         a10, 
+                                         b10, 
+                                         6);
+                this.registerImage("yykqfsbiwtqd4fagp0qr", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734462198/yykqfsbiwtqd4fagp0qr.jpg", 
+            "yykqfsbiwtqd4fagp0qr", 
+            eventGetted27);
         }
     }
 
