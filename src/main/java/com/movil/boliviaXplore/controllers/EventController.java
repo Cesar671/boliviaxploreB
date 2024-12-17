@@ -209,7 +209,12 @@ public class EventController {
                 }
                 return new ResponseEntity<>(eventosDTO, HttpStatus.OK);
             }
-            return new ResponseEntity<>(HttpStatus.OK);
+            List<EventDTO> eventosDTO = new LinkedList<>();
+            for (Event event : eventos) {
+                EventDTO eventDTO = EventDTO.getInstance(event);
+                 eventosDTO.add(eventDTO);
+            }
+            return new ResponseEntity<>(eventosDTO, HttpStatus.OK);
         } catch (Exception e){
             System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
