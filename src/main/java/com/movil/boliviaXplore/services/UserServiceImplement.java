@@ -66,6 +66,7 @@ public class UserServiceImplement implements UserService{
             user.setFotoUsuario(urlFoto);
             user.setGoogleId(googleId);
             user.setAuthProvider(authProvider);
+            user.setPassword(email);
             User userN = this.userRepository.save(user);
             Preferences pref = this.preferencesRepository.save(new Preferences(userN)); 
             userN.setPreferences(pref);

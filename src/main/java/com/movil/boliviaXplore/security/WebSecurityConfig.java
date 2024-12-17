@@ -33,7 +33,8 @@ public class WebSecurityConfig{
         http
         .csrf(csrf -> csrf.disable()) // Desactiva CSRF
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("api/**").authenticated()
+            .requestMatchers("api/user/create").permitAll()
+            .requestMatchers("api/**").authenticated()   
         )
         .httpBasic(Customizer.withDefaults()) // Configura HTTP Basic Auth
         .sessionManagement(session -> session
