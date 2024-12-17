@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -199,6 +200,7 @@ public class EventController {
             }
 
             if(eventFilter.existsFilters()){
+                System.out.println("obteniendo DTOS");
                 List<Event> eventosFiltrados = eventFilter.filter(eventos);
                 List<EventDTO> eventosDTO = new LinkedList<>();
                 for (Event event : eventosFiltrados) {
@@ -207,12 +209,11 @@ public class EventController {
                 }
                 return new ResponseEntity<>(eventosDTO, HttpStatus.OK);
             }
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e){
             System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        
-        return new ResponseEntity<>(eventos, HttpStatus.OK);
     }
   
     @GetMapping("/days-in-month/{year}/{month}")
