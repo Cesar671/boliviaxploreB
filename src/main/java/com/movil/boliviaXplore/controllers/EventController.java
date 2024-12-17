@@ -151,7 +151,7 @@ public class EventController {
         List<Event> eventos = eventServiceImplement.getAllEvents();
         try{ 
             boolean eventoActivo = (boolean) payload.get("eventoActivo");
-            System.out.println(" evento activo:"+eventoActivo+ " "+payload.get("eventoActivo").toString());
+            System.out.println(" evento activo:"+eventoActivo+ " "+payload.get("eventoActivo"));
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Object dateobj = payload.get("fecha");
             String date = dateobj != null ? dateobj.toString():null;
@@ -159,7 +159,7 @@ public class EventController {
             if (date != null) {
                 fecha = formatter.parse(date);
             }
-            System.out.println("Fecha: "+fecha+" "+payload.get("fecha").toString());
+            System.out.println("Fecha: "+fecha+" "+payload.get("fecha"));
             double distancia = (double) payload.get("distancia");
             System.out.println(" distancia:"+distancia);
             double longitud = (double) payload.get("longitud");
