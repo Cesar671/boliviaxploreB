@@ -513,6 +513,94 @@ public class DataLoader implements ApplicationRunner{
             "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734450671/ex7tpt1fwrb1dawm8kqs.jpg", 
             "ex7tpt1fwrb1dawm8kqs", 
             eventGetted20);
+            Event eventGetted21 = this.registerEvent(
+                "Art Gallery Gildaro Antezana",
+                "Un espacio reciente que promueve el arte contemporáneo en todas sus formas, organizando muestras colectivas e individuales de artistas jóvenes.", 
+                ""
+                                        , 
+                                        -17.393171324697846, -66.15671656296826,
+                                         true,
+                                         a, 
+                                         b, 
+                                         5);
+                this.registerImage("vtx7fgnsbdj7e5apziwa", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734451407/vtx7fgnsbdj7e5apziwa.jpg", 
+            "vtx7fgnsbdj7e5apziwa", 
+            eventGetted21);
+            this.registerImage("xc1geswz87njd1yvq2ij", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734451421/xc1geswz87njd1yvq2ij.jpg", 
+            "xc1geswz87njd1yvq2ij", 
+            eventGetted21);
+            this.registerImage("c3ef7rov4otu8nku975m", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734451412/c3ef7rov4otu8nku975m.jpg", 
+            "c3ef7rov4otu8nku975m", 
+            eventGetted21);
+
+            LocalDate a5 = LocalDate.of(2024, 11, 29);
+            LocalDate b5 = LocalDate.of(2024, 12, 23);
+            Event eventGetted22 = this.registerEvent(
+                "Feria Misk'a chojllu",
+                "𝙁𝙚𝙧𝙞𝙖 𝙙𝙚𝙡 𝙢𝙞𝙨𝙠❜𝙖 𝙘𝙝𝙤𝙟𝙡𝙡𝙪 (choclo tempranero) en Sanja Pampa, municipio de Quillacollo.\r\n" + //
+                                        "Transporte: Línea 265, taxi trufi Ironcollo", 
+                ""
+                                        , 
+                                        -17.357941555653973, -66.29086454232927,
+                                         false,
+                                         a5, 
+                                         b5, 
+                                         6);
+                this.registerImage("qbpyp6fxldthkmshs3h2", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734454273/qbpyp6fxldthkmshs3h2.jpg", 
+            "qbpyp6fxldthkmshs3h2", 
+            eventGetted22);
+            this.registerImage("g526r61jdegivhnxyasz", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734454277/g526r61jdegivhnxyasz.jpg", 
+            "g526r61jdegivhnxyasz", 
+            eventGetted22);
+            this.registerImage("biiaictwuizhcrdpbtof", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734454282/biiaictwuizhcrdpbtof.jpg", 
+            "biiaictwuizhcrdpbtof", 
+            eventGetted22);
+            this.registerImage("wylekgo5wbdiq4gd8kbn", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734454286/wylekgo5wbdiq4gd8kbn.jpg", 
+            "wylekgo5wbdiq4gd8kbn", 
+            eventGetted22);
+            this.registerImage("eglblqcmcs95gyh5hivi", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734454289/eglblqcmcs95gyh5hivi.jpg", 
+            "eglblqcmcs95gyh5hivi", 
+            eventGetted22);
+            LocalDate a6 = LocalDate.of(2024, 11, 29);
+            LocalDate b6 = LocalDate.of(2025, 1, 4);
+            Event eventGetted23 = this.registerEvent(
+                "𝙁𝙚𝙧𝙞𝙖 𝙖𝙜𝙧𝙤𝙥𝙚𝙘𝙪𝙖𝙧𝙞𝙖, 𝙖𝙢𝙗𝙧𝙤𝙨𝙞́𝙖 𝙮 𝙘𝙤𝙢𝙞𝙙𝙖𝙨 𝙩𝙞́𝙥𝙞𝙘𝙖𝙨",
+                "𝙁𝙚𝙧𝙞𝙖 𝙖𝙜𝙧𝙤𝙥𝙚𝙘𝙪𝙖𝙧𝙞𝙖, 𝙖𝙢𝙗𝙧𝙤𝙨𝙞́𝙖 𝙮 𝙘𝙤𝙢𝙞𝙙𝙖𝙨 𝙩𝙞́𝙥𝙞𝙘𝙖𝙨 en la OTB Callajchullpa, municipio de Colcapirhua.", 
+                ""
+                                        , 
+                                        -17.352865434822327, -66.24363719092591,
+                                         false,
+                                         a6, 
+                                         b6, 
+                                         6);
+                this.registerImage("vygqkwtqz3kmkt8mxltm", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734454592/vygqkwtqz3kmkt8mxltm.jpg", 
+            "vygqkwtqz3kmkt8mxltm", 
+            eventGetted23);
+            this.registerImage("mhqmf57ty7sq899uvr8g", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734454596/mhqmf57ty7sq899uvr8g.jpg", 
+            "mhqmf57ty7sq899uvr8g", 
+            eventGetted23);
+            this.registerImage("uznzjirljprxle6vavba", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734454599/uznzjirljprxle6vavba.jpg", 
+            "uznzjirljprxle6vavba", 
+            eventGetted23);
+            this.registerImage("sivjgs0jv4wg8xpdxmmh", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734454603/sivjgs0jv4wg8xpdxmmh.jpg", 
+            "sivjgs0jv4wg8xpdxmmh", 
+            eventGetted23);
+            this.registerImage("cmd7muafq9tnaekhimhb", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734454605/cmd7muafq9tnaekhimhb.jpg", 
+            "cmd7muafq9tnaekhimhb", 
+            eventGetted23);
         }
     }
 
