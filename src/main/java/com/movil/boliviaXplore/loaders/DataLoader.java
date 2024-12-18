@@ -15,6 +15,7 @@ import com.movil.boliviaXplore.repository.ImageRepository;
 import com.movil.boliviaXplore.models.Category;
 import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.models.Image;
+import com.movil.boliviaXplore.models.Types;
 
 @Component("datacategoryloader")
 public class DataLoader implements ApplicationRunner{
@@ -62,7 +63,7 @@ public class DataLoader implements ApplicationRunner{
                                         "El proyecto fue dirigido por los arquitectos César y Wálter Terrazas Pardo.\n" + //
                                         "La estatua simboliza la paz y la unión de los cochabambinos y es un importante atractivo turístico y religioso.", 
                                         -17.38452271820826, -66.13498326161248,
-                                         true,
+                                         Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          3);
@@ -89,7 +90,7 @@ public class DataLoader implements ApplicationRunner{
                 "Construida a inicios del siglo XX como residencia de Simón I. Patiño", 
                 "el magnate del estaño. Hoy es un centro cultural con exposiciones de arte y eventos.", 
                                         -17.374730390510376, -66.15314610502934,
-                                         true,
+                                        Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          2);
@@ -115,7 +116,7 @@ public class DataLoader implements ApplicationRunner{
                 "Una reserva natural ideal para el ecoturismo, con senderos, lagunas y montañas.", 
                 "Este parque protege una vasta área montañosa que rodea la ciudad y es vital para la conservación del ecosistema local. Es un refugio para flora y fauna andina.", 
                 -17.33569696136417, -66.13992321852305,
-                                         true,
+                Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          3);
@@ -137,7 +138,7 @@ public class DataLoader implements ApplicationRunner{
                 "Una laguna artificial en la ciudad, rodeada de áreas verdes y espacios para caminatas y deportes.", 
                 "Creada en los años 40 para el control de aguas, hoy es un espacio de recreación y un punto importante para la observación de aves.", 
                 -17.40788008649283, -66.13802100802646,
-                                         true,
+                Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          3);
@@ -162,7 +163,7 @@ public class DataLoader implements ApplicationRunner{
                 "Un parque con cascadas, senderos y áreas verdes perfecto para un día de campo.", 
                 "Fue parte de las tierras de Simón I. Patiño y se conserva como un espacio natural que promueve el ecoturismo.", 
                 -17.344647437639928, -66.3316565915364,
-                                         true,
+                Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          3);
@@ -188,7 +189,7 @@ public class DataLoader implements ApplicationRunner{
                 "Un embalse de agua rodeado de montañas y bosques, ideal para la pesca y deportes acuáticos.", 
                 "FConstruido como represa hidroeléctrica, se convirtió en un atractivo turístico debido a su belleza natural y tranquilidad.", 
                 -17.26621564253225, -65.90004299387782,
-                                         true,
+                Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          3);
@@ -210,7 +211,7 @@ public class DataLoader implements ApplicationRunner{
                 "Un convento colonial que hoy funciona como museo, mostrando la vida religiosa del siglo XVIII.", 
                 "Fundado en 1760, sus paredes cuentan historias de las monjas Carmelitas Descalzas y su vida de clausura en la época colonial.", 
                 -17.38615189952525, -66.15885569838967,
-                                         true,
+                Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          2);
@@ -232,7 +233,7 @@ public class DataLoader implements ApplicationRunner{
                 "La plaza principal de Cochabamba, un punto de encuentro rodeado por edificios históricos.", 
                 "Es el lugar donde se celebran las festividades más importantes de la ciudad. Fue testigo de la revolución del 14 de septiembre de 1810, cuando Cochabamba se levantó por la independencia.", 
                 -17.393812707063102, -66.15706069948624,
-                                         true,
+                Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          3);
@@ -257,7 +258,7 @@ public class DataLoader implements ApplicationRunner{
                 "Es una de las plazas más importantes y tradicionales de Cochabamba, conocida por sus amplias áreas verdes, monumentos y ambiente relajado. Está ubicada cerca del centro histórico de la ciudad y es un lugar perfecto para pasear, descansar o disfrutar de eventos culturales.", 
                 "La plaza fue diseñada durante el período republicano y lleva el nombre de Cristóbal Colón, como homenaje al navegante. A lo largo de los años, ha sido un espacio de encuentro para familias, turistas y estudiantes debido a su cercanía a colegios y universidades.", 
                 -17.387862812258916, -66.15583027619354,
-                                         true,
+                Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          3);
@@ -279,7 +280,7 @@ public class DataLoader implements ApplicationRunner{
                 "Originalmente, El Prado era una avenida con jardines diseñada durante la primera mitad del siglo XX como un paseo elegante para la burguesía cochabambina. A lo largo de los años, el lugar ha crecido en popularidad y ha mantenido su carácter distintivo de espacio recreativo y punto de encuentro."
                                         , 
                                         -17.384801454973005, -66.15790094144648,
-                                         true,
+                                        Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          3);
@@ -302,7 +303,7 @@ public class DataLoader implements ApplicationRunner{
                 "Fundado en 1951, es uno de los centros más importantes para la investigación y preservación del patrimonio arqueológico regional."
                                         , 
                                         -17.39524756030184, -66.15727607087086,
-                                         true,
+                                        Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          2);
@@ -329,7 +330,7 @@ public class DataLoader implements ApplicationRunner{
                 "Nombrado en honor al naturalista francés Alcide d'Orbigny, quien exploró Bolivia en el siglo XIX. Abrió sus puertas en 2001."
                                         , 
                                         -17.37377181127687, -66.15370713386481,
-                                         true,
+                                        Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          2);
@@ -351,7 +352,7 @@ public class DataLoader implements ApplicationRunner{
                 "Creado en honor a Cárdenas, un referente en la botánica boliviana, reconocido por su aporte a la clasificación de flora nativa."
                                         , 
                                         -17.3925973874009, -66.1605509843652,
-                                         true,
+                                        Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          2);
@@ -377,7 +378,7 @@ public class DataLoader implements ApplicationRunner{
                 "Nació en el siglo XVII, cuando una pastorcita indígena tuvo una visión de la Virgen María en el cerro de Cota. Es conocida como la \"Patrona de la Integración Nacional\"."
                                         , 
                                         -17.394216696453988, -66.27935952773699,
-                                         true,
+                                        Types.SEMIPERMANENTE.toString(),
                                          a1, 
                                          b1, 
                                          1);
@@ -401,7 +402,7 @@ public class DataLoader implements ApplicationRunner{
                 " Se origina en las culturas prehispánicas andinas, donde se pedía prosperidad a los dioses con ofrendas simbólicas."
                                         , 
                                         -17.39841050244694, -66.17584347274092,
-                                         true,
+                                        Types.SEMIPERMANENTE.toString(),
                                          a2, 
                                          b2, 
                                          1);
@@ -424,7 +425,7 @@ public class DataLoader implements ApplicationRunner{
                 " Fundado en 2005, se ha convertido en un referente cultural donde confluyen artistas emergentes y consolidados."
                                         , 
                                         -17.39841050244694, -66.17584347274092,
-                                         true,
+                                        Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          5);
@@ -443,7 +444,7 @@ public class DataLoader implements ApplicationRunner{
                 " La casona data del siglo XVIII y es un espacio patrimonial restaurado para actividades culturales."
                                         , 
                                         -17.394446419622916, -66.15912990502875,
-                                         true,
+                                        Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          5);
@@ -461,7 +462,7 @@ public class DataLoader implements ApplicationRunner{
                 "La Alianza Francesa, con una larga trayectoria en Cochabamba, ha sido un punto clave para la difusión del arte y la cultura."
                                         , 
                                         -17.382885744648238, -66.15351580502919,
-                                         true,
+                                        Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          5);
@@ -475,7 +476,7 @@ public class DataLoader implements ApplicationRunner{
                 "Ha sido un punto de encuentro cultural en la ciudad desde hace varias décadas."
                                         , 
                                         -17.3918467945358, -66.15576893427887,
-                                         true,
+                                        Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          5);
@@ -497,7 +498,7 @@ public class DataLoader implements ApplicationRunner{
                 ""
                                         , 
                                         -17.368781611106193, -66.16303113039336,
-                                         true,
+                                        Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          5);
@@ -519,7 +520,7 @@ public class DataLoader implements ApplicationRunner{
                 ""
                                         , 
                                         -17.393171324697846, -66.15671656296826,
-                                         true,
+                                        Types.PERMANENTE.toString(),
                                          a, 
                                          b, 
                                          5);
@@ -545,7 +546,7 @@ public class DataLoader implements ApplicationRunner{
                 ""
                                         , 
                                         -17.357941555653973, -66.29086454232927,
-                                         false,
+                                        Types.TEMPORAL.toString(),
                                          a5, 
                                          b5, 
                                          6);
@@ -577,7 +578,7 @@ public class DataLoader implements ApplicationRunner{
                 ""
                                         , 
                                         -17.352865434822327, -66.24363719092591,
-                                         false,
+                                        Types.TEMPORAL.toString(),
                                          a6, 
                                          b6, 
                                          6);
@@ -609,7 +610,7 @@ public class DataLoader implements ApplicationRunner{
                 ""
                                         , 
                                         -17.396420504398243, -66.17358388305826,
-                                         true,
+                                        Types.SEMIPERMANENTE.toString(),
                                          a7, 
                                          b7, 
                                          1);
@@ -627,7 +628,7 @@ public class DataLoader implements ApplicationRunner{
                 ""
                                         , 
                                         -17.59171647807783, -65.93399512883536,
-                                         false,
+                                        Types.TEMPORAL.toString(),
                                          a8, 
                                          b8, 
                                          6);
@@ -644,7 +645,7 @@ public class DataLoader implements ApplicationRunner{
                 ""
                                         , 
                                         -17.354030475215374, -66.24261991534144,
-                                         false,
+                                        Types.TEMPORAL.toString(),
                                          a9, 
                                          b9, 
                                          6);
@@ -660,7 +661,7 @@ public class DataLoader implements ApplicationRunner{
                 ""
                                         , 
                                         -17.395608494624163, -65.98737394232927,
-                                         false,
+                                        Types.TEMPORAL.toString(),
                                          a10, 
                                          b10, 
                                          6);
@@ -671,14 +672,14 @@ public class DataLoader implements ApplicationRunner{
         }
     }
 
-    private Event registerEvent(String nombreEvento, String descripcionEvento, String historiaEvento, double latitud, double longitud, boolean permanente, LocalDate a, LocalDate b, long idCategoria){
+    private Event registerEvent(String nombreEvento, String descripcionEvento, String historiaEvento, double latitud, double longitud, String tipoEvento, LocalDate a, LocalDate b, long idCategoria){
         Event event = new Event();
         event.setNombreEvento(nombreEvento);  
         event.setDescripcionEvento(descripcionEvento);  
         event.setLongitud(longitud);
         event.setLatitud(latitud);  
         event.setHistoriaEvento(historiaEvento); 
-        event.setPermanente(permanente); 
+        event.setTipoEvento(tipoEvento); 
         try{
             event.setFechaInicioEvento(Date.from(a.atStartOfDay(ZoneId.systemDefault()).toInstant()));
             event.setFechaFinEvento(Date.from(b.atStartOfDay(ZoneId.systemDefault()).toInstant()));

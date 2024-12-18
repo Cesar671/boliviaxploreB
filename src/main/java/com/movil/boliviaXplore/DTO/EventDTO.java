@@ -19,7 +19,16 @@ public class EventDTO{
     private Long idTipoEvento;
     private boolean permanente;
     private List<ImageDTO> imagenes;
+    private String tipoEvento;
 
+    public EventDTO setTipoEvento(String tipoEvento){
+        this.tipoEvento = tipoEvento;
+        return this;
+    }
+
+    public String getTipoEvento(){
+        return this.tipoEvento;
+    }
 
     public EventDTO setPermanente(boolean permanente){
         this.permanente = permanente;
@@ -138,6 +147,7 @@ public class EventDTO{
                 setFechaFinEvento(event.getFechaFinEvento()).
                 setIdTipoEvento(event.getIdTipoEvento().getIdTipoEvento()).
                 setPermanente(event.getPermenente()).
-                setImagenes(imagesDto);
+                setImagenes(imagesDto).
+                setTipoEvento(event.getTipoEvento());
     }
 }

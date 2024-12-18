@@ -7,7 +7,6 @@ import com.movil.boliviaXplore.repository.EventRepository;
 import com.movil.boliviaXplore.repository.UserRepository;
 import com.movil.boliviaXplore.services.filter.Filters.FilterByCategory;
 import com.movil.boliviaXplore.services.filter.Filters.FilterByDistance;
-import com.movil.boliviaXplore.services.filter.Filters.FilterFavorite;
 import com.movil.boliviaXplore.services.filter.Filters.FilterNotFavorite;
 import com.movil.boliviaXplore.services.filter.distance.HaversineDistance;
 import com.movil.boliviaXplore.models.Preferences;
@@ -16,9 +15,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import com.movil.boliviaXplore.services.filter.Filter;
-import com.movil.boliviaXplore.models.Event;
 import java.util.Map;
-import java.util.HashMap;
 import com.movil.boliviaXplore.models.Favorite;
 import org.springframework.stereotype.Service;
 /*

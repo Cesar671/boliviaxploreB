@@ -52,8 +52,12 @@ public class Event {
     @Column(name = "fechaFinEvento")
     private Date fechaFinEvento;
 
+    @Column(name = "tipoEvento")
+    private String tipoEvento;
+
     @Column(name = "permanente")
     private boolean permanente;
+
 
     @ManyToOne
     @JsonBackReference("referenceA")
@@ -67,6 +71,14 @@ public class Event {
     @JsonManagedReference("referenceB")
     @OneToMany(mappedBy = "codEvento", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Favorite> idFavorite;
+
+    public boolean getPermenente(){
+        return this.permanente;
+    }
+
+    public void setPermanente(boolean permanente){
+        this.permanente = permanente;
+    }
 
     public void setUbicacion(String ubicacion){
         this.ubicacion = ubicacion;
@@ -88,12 +100,12 @@ public class Event {
         return this.codEvento;
     }
 
-    public boolean getPermenente(){
-        return this.permanente;
+    public String getTipoEvento(){
+        return this.tipoEvento;
     }
 
-    public void setPermanente(boolean permanent){
-        this.permanente = permanent;
+    public void setTipoEvento(String tipoEvento){
+        this.tipoEvento = tipoEvento;
     }
 
     public void setCategory(Category cat){

@@ -6,6 +6,7 @@ com\movil\boliviaXplore\services\filter\Filters\FilterBySearch.class
 com\movil\boliviaXplore\DTO\ImageDTO.class
 com\movil\boliviaXplore\models\Favorite.class
 com\movil\boliviaXplore\models\Image.class
+com\movil\boliviaXplore\models\Types.class
 com\movil\boliviaXplore\services\UserService.class
 com\movil\boliviaXplore\models\Event.class
 com\movil\boliviaXplore\services\UserServiceImplement.class

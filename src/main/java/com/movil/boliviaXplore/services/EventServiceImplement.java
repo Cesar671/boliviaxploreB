@@ -20,6 +20,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import com.movil.boliviaXplore.models.Image;
+import com.movil.boliviaXplore.models.Types;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
@@ -47,12 +49,13 @@ public class EventServiceImplement implements EventService {
         this.imageRepository = imageRepository;
     }
 
-    //faltan las imagenes
+    //recalcular el nuevo tipo del evento
     @Override
     public Event updateEvent(Event eventNewData) {  
         Category category = this.categoryRepository.findById(eventNewData.getIdTipoEvento().getIdTipoEvento()).get();
         Long idEvent = eventNewData.getCodEvento();
         Event eventMatched = this.eventRepository.findById(idEvent).map( e -> {
+            String tipoEvento = this.computeTypeOfEvent(eventNewData.getFechaInicioEvento(), eventNewData.getFechaFinEvento(), eventNewData.getPermenente()).toString();
             e.setNombreEvento(eventNewData.getNombreEvento());
             e.setDescripcionEvento(eventNewData.getDescripcionEvento());
             e.setLatitud(eventNewData.getLatitud());
@@ -60,12 +63,27 @@ public class EventServiceImplement implements EventService {
             e.setHistoriaEvento(eventNewData.getHistoriaEvento());
             e.setFechaInicioEvento(eventNewData.getFechaInicioEvento());
             e.setFechaFinEvento(eventNewData.getFechaFinEvento());
-            e.setPermanente(eventNewData.getPermenente());
+            e.setTipoEvento(tipoEvento);
             e.setCategory(category);
             e.setUbicacion(eventNewData.getUbicacion());
             return eventRepository.save(e);
         }).get();
         return eventMatched;
+    }
+
+    private Types computeTypeOfEvent(Date a, Date b, boolean permanent){
+            if(a == null && b == null && permanent){
+                return Types.PERMANENTE;
+            }
+    
+            if(a != null && b != null && permanent){
+                return Types.SEMIPERMANENTE;
+            }
+
+            if(a != null && b != null && !permanent){
+                return Types.TEMPORAL;
+            }
+            return null;
     }
 
     @Override 
@@ -98,6 +116,8 @@ public class EventServiceImplement implements EventService {
 
     @Override
     public Event saveEvent(Event event){
+        String tipoEvento = this.computeTypeOfEvent(event.getFechaInicioEvento(), event.getFechaFinEvento(), event.getPermenente()).toString();
+        event.setTipoEvento(tipoEvento);
         Event addedEvent = this.eventRepository.save(event);
         return addedEvent;
     }
@@ -205,6 +225,18 @@ public class EventServiceImplement implements EventService {
         }
         // Retornar la lista de días ordenados
         return eventosPorDia;
+    }
+
+    @Override
+    public List<Event> getAllEventToMap() {
+        List<Event> events = this.eventRepository.findAll();
+        List<Event> filteredEvents = new LinkedList<>();
+
+        //filtrar por fecha, osea activo
+        //filtrar por permanentes
+
+
+        return null;
     }
 
 }

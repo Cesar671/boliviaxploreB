@@ -93,7 +93,6 @@ public class EventController {
 
     @PostMapping("/register")
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
-        System.out.println("entra al servidor");
         try{
             Event savedEvent = eventServiceImplement.saveEvent(event);
             return new ResponseEntity<>(savedEvent, HttpStatus.OK);
@@ -162,21 +161,13 @@ public class EventController {
             if (date != null) {
                 fecha = formatter.parse(date);
             }
-            System.out.println("Fecha: "+fecha+" "+payload.get("fecha"));
             double distancia = Double.parseDouble(payload.get("distancia").toString());
-            System.out.println(" distancia:"+distancia);
             double longitud = Double.parseDouble(payload.get("longitud").toString());
-            System.out.println(" longitu:"+longitud);
             double latitud = Double.parseDouble(payload.get("latitud").toString());
-            System.out.println(" latitud:"+latitud);
             String busqueda = (String) payload.get("busqueda");
-            System.out.println(" busqueda:"+busqueda);
             Long idCategoria =(payload.get("categoria") != null) ? ((Number) payload.get("categoria")).longValue():null;
-            System.out.println(" idCateogoria:"+idCategoria);
             boolean favorito = (boolean) payload.get("favorito");
-            System.out.println(" favorito:"+favorito);
             Long codUsuario = (payload.get("codUsuario") != null) ? ((Number) payload.get("codUsuario")).longValue():null;
-            System.out.println(" codusuario:"+codUsuario);
             EventFilter eventFilter = new EventFilter();
             if(longitud != 0 && latitud != 0 && distancia != 0){
                 eventFilter.addFilter(new FilterByDistance(longitud, latitud, distancia, new HaversineDistance()));
