@@ -36,6 +36,7 @@ com\movil\boliviaXplore\services\filter\Filter.class
 com\movil\boliviaXplore\services\EventFilter.class
 com\movil\boliviaXplore\BoliviaXploreApplication.class
 com\movil\boliviaXplore\services\CloudinaryServiceImplement.class
+com\movil\boliviaXplore\services\filter\Filters\FilterToMap.class
 com\movil\boliviaXplore\loaders\DataLoader.class
 com\movil\boliviaXplore\models\User.class
 com\movil\boliviaXplore\services\EventServiceImplement.class
