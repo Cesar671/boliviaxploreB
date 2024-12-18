@@ -40,6 +40,8 @@ import java.util.LinkedList;
 
 import org.springframework.web.bind.annotation.PutMapping;
 import com.movil.boliviaXplore.models.Image;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -217,4 +219,11 @@ public class EventController {
         Map<Integer, List<Event>> days = eventServiceImplement.getEventDaysInMonth(year, month);
         return ResponseEntity.ok(days);
     }
+
+    @GetMapping("/events-to-map")
+    public ResponseEntity<List<Event>> getEventsForMap() {
+        List<Event> events = this.eventServiceImplement.getAllEventToMap();
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+    
 }

@@ -11,6 +11,8 @@ import com.movil.boliviaXplore.repository.CategoryRepository;
 import com.movil.boliviaXplore.repository.EventRepository;
 import com.movil.boliviaXplore.repository.FavoriteRepository;
 import com.movil.boliviaXplore.repository.ImageRepository;
+import com.movil.boliviaXplore.services.filter.Filters.FilterToMap;
+import com.movil.boliviaXplore.services.filter.Filter;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -230,13 +232,8 @@ public class EventServiceImplement implements EventService {
     @Override
     public List<Event> getAllEventToMap() {
         List<Event> events = this.eventRepository.findAll();
-        List<Event> filteredEvents = new LinkedList<>();
-
-        //filtrar por fecha, osea activo
-        //filtrar por permanentes
-
-
-        return null;
+        Filter filterToMap = new FilterToMap();
+        return filterToMap.filter(events);
     }
 
 }
