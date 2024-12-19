@@ -12,6 +12,7 @@ import com.movil.boliviaXplore.repository.EventRepository;
 import com.movil.boliviaXplore.repository.FavoriteRepository;
 import com.movil.boliviaXplore.repository.ImageRepository;
 import com.movil.boliviaXplore.services.filter.Filters.FilterByCurrentEvent;
+import com.movil.boliviaXplore.services.filter.Filters.FilterByNotPermanent;
 import com.movil.boliviaXplore.services.filter.Filters.FilterToMap;
 import com.movil.boliviaXplore.services.filter.Filter;
 
@@ -185,13 +186,14 @@ public class EventServiceImplement implements EventService {
     public Map<Integer, List<Event>> getEventDaysInMonth(int year, int month){
         LocalDate startDate = LocalDate.of(year, month, 1);
         LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
+        Filter filterByNorPerment = new FilterByNotPermanent();
 
         // Convertir LocalDate a java.util.Date
         Date start = java.sql.Date.valueOf(startDate);
         Date end = java.sql.Date.valueOf(endDate);
 
         // Consultar eventos
-        List<Event> events = eventRepository.findEventsInMonth(start, end);
+        List<Event> events =  filterByNorPerment.filter(eventRepository.findEventsInMonth(start, end));
 
         // Extraer los días únicos
         Set<Integer> days = new HashSet<>();

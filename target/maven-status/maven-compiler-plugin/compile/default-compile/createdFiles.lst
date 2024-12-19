@@ -1,6 +1,7 @@
 com\movil\boliviaXplore\loaders\DataUserLoader.class
 com\movil\boliviaXplore\models\Notification.class
 com\movil\boliviaXplore\services\filter\Filters\FilterByCategory.class
+com\movil\boliviaXplore\services\filter\Filters\FilterByNotPermanent.class
 com\movil\boliviaXplore\DTO\CategoryDTO.class
 com\movil\boliviaXplore\services\filter\Filters\FilterBySearch.class
 com\movil\boliviaXplore\DTO\ImageDTO.class
