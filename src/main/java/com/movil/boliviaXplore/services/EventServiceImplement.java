@@ -11,6 +11,7 @@ import com.movil.boliviaXplore.repository.CategoryRepository;
 import com.movil.boliviaXplore.repository.EventRepository;
 import com.movil.boliviaXplore.repository.FavoriteRepository;
 import com.movil.boliviaXplore.repository.ImageRepository;
+import com.movil.boliviaXplore.services.filter.Filters.FilterByCurrentEvent;
 import com.movil.boliviaXplore.services.filter.Filters.FilterToMap;
 import com.movil.boliviaXplore.services.filter.Filter;
 
@@ -140,7 +141,10 @@ public class EventServiceImplement implements EventService {
 
     @Override
     public List<Event> getAllEvents(){
-        return this.eventRepository.findAll();
+        Filter filterCurrentEvents = new FilterByCurrentEvent();
+        List<Event> events = this.eventRepository.findAll();
+        List<Event> currentEvents = filterCurrentEvents.filter(events);
+        return currentEvents;
     }
 
     @Override
