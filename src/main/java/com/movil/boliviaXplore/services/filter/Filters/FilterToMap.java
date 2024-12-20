@@ -16,7 +16,7 @@ public class FilterToMap implements Filter<Event>{
         Date currentDate = new Date();
         for (Event nEvent : events) {
             String tipoEvento = nEvent.getTipoEvento();
-            if(tipoEvento.compareTo(Types.PERMANENTE.toString()) == 1){
+            if(tipoEvento.equals(Types.PERMANENTE.toString())){
                 filtered.add(nEvent);
             } else {
                 System.out.println("No entra a la condicion del filtro, error? - "+nEvent.getCodEvento()+" "+nEvent.getIdTipoEvento());
