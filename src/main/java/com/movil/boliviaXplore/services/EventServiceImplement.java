@@ -241,10 +241,14 @@ public class EventServiceImplement implements EventService {
         List<Event> events = this.eventRepository.findAll();
         Filter<Event> filterToMap = new FilterToMap();
         List<Event> eventsFiltered = filterToMap.filter(events);
+        System.out.println("sale del filtro exitosamente");
         List<EventDTO> eventDTOs = new LinkedList<>();
+        System.out.println("comienza a convertir a DTO");
         for (Event event : eventsFiltered) {
+           
             eventDTOs.add(EventDTO.getInstance(event));
         }
+        System.out.println("termina el proceso de convertir a DTO");
         return  eventDTOs;
     }
 }

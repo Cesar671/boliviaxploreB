@@ -11,15 +11,15 @@ import com.movil.boliviaXplore.services.filter.Filter;
 public class FilterToMap implements Filter<Event>{
 
     @Override
-    public List<Event> filter(List events) {
+    public List<Event> filter(List<Event> events) {
         List<Event> filtered = new LinkedList<>();
         Date currentDate = new Date();
-        for (Object event : events) {
-            Event nEvent = (Event) event;
+        for (Event nEvent : events) {
             String tipoEvento = nEvent.getTipoEvento();
             if(tipoEvento.compareTo(Types.PERMANENTE.toString()) == 1){
                 filtered.add(nEvent);
             } else {
+                System.out.println("No entra a la condicion del filtro, error?");
                 Date startEvent = nEvent.getFechaInicioEvento();
                 Date endEvent = nEvent.getFechaFinEvento();
                 if(currentDate.compareTo(startEvent) >= 0 && currentDate.compareTo(endEvent) <= 0){
