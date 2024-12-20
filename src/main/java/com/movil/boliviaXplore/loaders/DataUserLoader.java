@@ -24,16 +24,7 @@ public class DataUserLoader implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws IOException{
         if( userRepository.count() == 0 ){
-            User user = new User();
-            user.setCorreoUsuario("admpru671@gmail.com");
-            user.setNombreUsuario("admin");
-            user.setRolUsuario(1);
-            user.setPassword("admpru671@gmail.com");
-            user.setFotoUsuario("https://vidaenusa.org/wp-content/uploads/2023/12/cuanto-gana-administrador-empresas-usa.jpg");
-            User userN = this.userRepository.save(user);
-            Preferences pref = this.preferencesRepository.save(new Preferences(userN)); 
-            userN.setPreferences(pref);
-            userRepository.save(user);
+            
         }
     }
 }

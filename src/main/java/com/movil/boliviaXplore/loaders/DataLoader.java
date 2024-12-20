@@ -11,19 +11,37 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import com.movil.boliviaXplore.repository.CategoryRepository;
 import com.movil.boliviaXplore.repository.EventRepository;
+import com.movil.boliviaXplore.repository.FavoriteRepository;
 import com.movil.boliviaXplore.repository.ImageRepository;
+import com.movil.boliviaXplore.repository.PreferencesRepository;
+import com.movil.boliviaXplore.repository.UserRepository;
 import com.movil.boliviaXplore.models.Category;
 import com.movil.boliviaXplore.models.Event;
+import com.movil.boliviaXplore.models.Favorite;
 import com.movil.boliviaXplore.models.Image;
+import com.movil.boliviaXplore.models.Preferences;
 import com.movil.boliviaXplore.models.Types;
+import com.movil.boliviaXplore.models.User;
 
 @Component("datacategoryloader")
 public class DataLoader implements ApplicationRunner{
     private final CategoryRepository categoryRepository;
     private final EventRepository eventRepository;
     private final ImageRepository imageRepository;
+    private final UserRepository userRepository;
+    private final PreferencesRepository preferencesRepository;
+    private final FavoriteRepository favoriteRepository;
 
-    public DataLoader(EventRepository eventRepository,CategoryRepository categoryRepository, ImageRepository imageRepository){
+    public DataLoader(
+        EventRepository eventRepository,
+        CategoryRepository categoryRepository, 
+        ImageRepository imageRepository,
+        UserRepository userRepository,
+        PreferencesRepository preferencesRepository,
+        FavoriteRepository favoriteRepository){
+        this.favoriteRepository = favoriteRepository;
+        this.userRepository = userRepository;
+        this.preferencesRepository = preferencesRepository;
         this.categoryRepository = categoryRepository;
         this.eventRepository = eventRepository;
         this.imageRepository = imageRepository;
@@ -32,6 +50,18 @@ public class DataLoader implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws IOException{
         if( categoryRepository.count() == 0 ){
+
+            User user = new User();
+            user.setCorreoUsuario("admpru671@gmail.com");
+            user.setNombreUsuario("admin");
+            user.setRolUsuario(1);
+            user.setPassword("admpru671@gmail.com");
+            user.setFotoUsuario("https://vidaenusa.org/wp-content/uploads/2023/12/cuanto-gana-administrador-empresas-usa.jpg");
+            User userN = this.userRepository.save(user);
+            Preferences pref = this.preferencesRepository.save(new Preferences(userN)); 
+            userN.setPreferences(pref);
+            userRepository.save(userN);
+
             Category category1 = new Category();
             category1.setNombreCategoria("Celebraciones Folcloricas");
             Category category2 = new Category();
@@ -665,6 +695,21 @@ public class DataLoader implements ApplicationRunner{
             "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734462198/yykqfsbiwtqd4fagp0qr.jpg", 
             "yykqfsbiwtqd4fagp0qr", 
             eventGetted27);
+            
+            Favorite favorite = new Favorite();
+            favorite.setCodUsuario(userN);
+            favorite.setCodEvento(eventGetted);
+            this.favoriteRepository.save(favorite);
+
+            Favorite favorite2 = new Favorite();
+            favorite2.setCodEvento(eventGetted2);
+            favorite2.setCodUsuario(userN);
+            this.favoriteRepository.save(favorite2);
+
+            Favorite favorite3 = new Favorite();
+            favorite3.setCodEvento(eventGetted3);
+            favorite3.setCodUsuario(userN);
+            this.favoriteRepository.save(favorite3);
         }
     }
 

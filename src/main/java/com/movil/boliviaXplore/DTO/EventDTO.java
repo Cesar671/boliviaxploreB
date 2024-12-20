@@ -147,8 +147,10 @@ public class EventDTO{
             imagesDto.add(ImageDTO.getInstance(image));
         }
         List<Favorite> favorites = event.getIdFavorite();
+        System.out.println("····##cantidad de favoritos"+ favorites.size());
         List<FavoriteDTO> favoritesDTO = new LinkedList<>();
         for (Favorite favorite : favorites) {
+            System.out.println("entra...");
             favoritesDTO.add(FavoriteDTO.getInstante(favorite));
         }
         return new EventDTO().
