@@ -149,6 +149,7 @@ public class EventDTO{
         }
         List<Favorite> favorites = event.getIdFavorite();
         List<FavoriteDTO> favoritesDTO = new LinkedList<>();
+        System.out.println(event.getFechaFinEvento()+"");
         for (Favorite favorite : favorites) {
             favoritesDTO.add(FavoriteDTO.getInstante(favorite));
         }
