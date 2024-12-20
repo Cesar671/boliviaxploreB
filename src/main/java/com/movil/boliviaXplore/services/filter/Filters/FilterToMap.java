@@ -19,7 +19,7 @@ public class FilterToMap implements Filter<Event>{
             if(tipoEvento.compareTo(Types.PERMANENTE.toString()) == 1){
                 filtered.add(nEvent);
             } else {
-                System.out.println("No entra a la condicion del filtro, error?");
+                System.out.println("No entra a la condicion del filtro, error? - "+nEvent.getCodEvento()+" "+nEvent.getIdTipoEvento());
                 Date startEvent = nEvent.getFechaInicioEvento();
                 Date endEvent = nEvent.getFechaFinEvento();
                 if(currentDate.compareTo(startEvent) >= 0 && currentDate.compareTo(endEvent) <= 0){
