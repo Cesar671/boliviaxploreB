@@ -220,6 +220,12 @@ public class EventController {
         return ResponseEntity.ok(days);
     }
 
+    @GetMapping("/events-to-map/{id}")
+    public ResponseEntity<List<EventDTO>> getEventsForMap(@PathVariable long id) {
+        List<EventDTO> events = this.eventServiceImplement.getAllEventToMapF(id);
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
     @GetMapping("/events-to-map")
     public ResponseEntity<List<Event>> getEventsForMap() {
         List<Event> events = this.eventServiceImplement.getAllEventToMap();

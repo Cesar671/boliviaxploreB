@@ -1,5 +1,6 @@
 package com.movil.boliviaXplore.services;
 
+import com.movil.boliviaXplore.DTO.EventDTO;
 import com.movil.boliviaXplore.models.Event;
 
 import java.io.IOException;
@@ -15,5 +16,6 @@ public interface EventService {
     Map<Integer, List<Event>> getEventDaysInMonth(int year, int month);
     Event updateEvent(Event event);
     void updateImages(List<MultipartFile> files, long idEvent) throws IOException;
+    List<EventDTO> getAllEventToMapF(long id);
     List<Event> getAllEventToMap();
 }

@@ -68,21 +68,17 @@ public class DataLoader implements ApplicationRunner{
                                          b, 
                                          3);
 
-            this.registerImage("bbynjdnazvxa4kozbc0u", 
-            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734443501/bbynjdnazvxa4kozbc0u.jpg", 
-            "bbynjdnazvxa4kozbc0u", 
+            this.registerImage("kw7ipyw5fuah4rxv8ted", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734470776/kw7ipyw5fuah4rxv8ted.jpg", 
+            "kw7ipyw5fuah4rxv8ted", 
             eventGetted);
-            this.registerImage("lqiat2xusoyizbsoj5ay", 
-            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734443506/lqiat2xusoyizbsoj5ay.jpg", 
-            "lqiat2xusoyizbsoj5ay", 
+            this.registerImage("nf08yh0szriqmbumvcbw", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734470777/nf08yh0szriqmbumvcbw.jpg", 
+            "nf08yh0szriqmbumvcbw", 
             eventGetted);
-            this.registerImage("tvitybrvotkjo143zhjj", 
-            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734443512/tvitybrvotkjo143zhjj.jpg", 
-            "tvitybrvotkjo143zhjj", 
-            eventGetted);
-            this.registerImage("hqbln0detevojmr5njyz", 
-            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734443519/hqbln0detevojmr5njyz.jpg", 
-            "hqbln0detevojmr5njyz", 
+            this.registerImage("zmdxp8ex2hztgmnmxeqt", 
+            "https://res.cloudinary.com/dgr3g2a0g/image/upload/v1734470778/zmdxp8ex2hztgmnmxeqt.jpg", 
+            "zmdxp8ex2hztgmnmxeqt", 
             eventGetted);
 
             Event eventGetted2 = this.registerEvent(

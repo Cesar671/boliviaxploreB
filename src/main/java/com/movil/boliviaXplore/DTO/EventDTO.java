@@ -20,6 +20,16 @@ public class EventDTO{
     private boolean permanente;
     private List<ImageDTO> imagenes;
     private String tipoEvento;
+    private boolean favorito = false;
+
+    public EventDTO setFavorito(boolean favorito){
+        this.favorito = favorito;
+        return this;
+    };
+
+    public boolean getFavorito(){
+        return favorito;
+    }
 
     public EventDTO setTipoEvento(String tipoEvento){
         this.tipoEvento = tipoEvento;
