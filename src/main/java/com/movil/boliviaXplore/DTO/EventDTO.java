@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import com.movil.boliviaXplore.DTO.ImageDTO;
 import com.movil.boliviaXplore.models.Event;
+import com.movil.boliviaXplore.models.Favorite;
 import com.movil.boliviaXplore.models.Image;
 
 public class EventDTO{
@@ -20,14 +21,14 @@ public class EventDTO{
     private boolean permanente;
     private List<ImageDTO> imagenes;
     private String tipoEvento;
-    private boolean favorito = false;
+    private List<FavoriteDTO> favorito;
 
-    public EventDTO setFavorito(boolean favorito){
+    public EventDTO setFavorito(List<FavoriteDTO> favorites){
         this.favorito = favorito;
         return this;
     };
 
-    public boolean getFavorito(){
+    public List<FavoriteDTO> getFavorito(){
         return favorito;
     }
 
@@ -145,7 +146,11 @@ public class EventDTO{
         for (Image image : images) {
             imagesDto.add(ImageDTO.getInstance(image));
         }
-        
+        List<Favorite> favorites = event.getIdFavorite();
+        List<FavoriteDTO> favoritesDTO = new LinkedList<>();
+        for (Favorite favorite : favorites) {
+            favoritesDTO.add(FavoriteDTO.getInstante(favorite));
+        }
         return new EventDTO().
                 setCodEvento(event.getCodEvento()).
                 setNombreEvento(event.getNombreEvento()).
@@ -158,6 +163,7 @@ public class EventDTO{
                 setIdTipoEvento(event.getIdTipoEvento().getIdTipoEvento()).
                 setPermanente(event.getPermenente()).
                 setImagenes(imagesDto).
-                setTipoEvento(event.getTipoEvento());
+                setTipoEvento(event.getTipoEvento()).
+                setFavorito(favoritesDTO);
     }
 }

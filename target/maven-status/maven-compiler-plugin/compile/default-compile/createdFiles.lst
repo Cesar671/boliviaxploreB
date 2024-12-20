@@ -44,6 +44,7 @@ com\movil\boliviaXplore\models\User.class
 com\movil\boliviaXplore\services\EventServiceImplement.class
 com\movil\boliviaXplore\services\NotificationService.class
 com\movil\boliviaXplore\services\RecomendationServiceImplement.class
+com\movil\boliviaXplore\DTO\FavoriteDTO.class
 com\movil\boliviaXplore\services\CategoryService.class
 com\movil\boliviaXplore\controllers\EventController.class
 com\movil\boliviaXplore\models\Category.class

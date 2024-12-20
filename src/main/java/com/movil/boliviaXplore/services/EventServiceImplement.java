@@ -237,32 +237,14 @@ public class EventServiceImplement implements EventService {
     }
 
     @Override
-    public List<EventDTO> getAllEventToMapF(long id) {
-        List<Event> events = this.eventRepository.findAll();
-        Filter filterToMap = new FilterToMap();
-        List<Event> eventsFiltered = filterToMap.filter(events);
-        List<EventDTO> eventsAndFavorite = new ArrayList<>();
-        for (Event event : eventsFiltered) {
-            EventDTO eventDTO = EventDTO.getInstance(event);
-            List<Favorite> favorites = event.getIdFavorite();
-            if(!favorites.isEmpty()){
-                for (Favorite favorite : favorites) {
-                    if (favorite.getCodEvento().getCodEvento() == id) {
-                        System.out.println("encontrada coincidencia de favorito");
-                        eventDTO.setFavorito(true);
-                    }
-                }
-            } 
-            eventsAndFavorite.add(eventDTO);
-        } 
-        return eventsAndFavorite;
-    }
-
-    @Override
-    public List<Event> getAllEventToMap() {
+    public List<EventDTO> getAllEventToMap() {
         List<Event> events = this.eventRepository.findAll();
         Filter<Event> filterToMap = new FilterToMap();
-        return  filterToMap.filter(events);
+        List<Event> eventsFiltered = filterToMap.filter(events);
+        List<EventDTO> eventDTOs = new LinkedList<>();
+        for (Event event : eventsFiltered) {
+            eventDTOs.add(EventDTO.getInstance(event));
+        }
+        return  eventDTOs;
     }
-
 }
