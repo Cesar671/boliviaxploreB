@@ -23,6 +23,16 @@ public class EventDTO{
     private List<ImageDTO> imagenes;
     private String tipoEvento;
     private List<FavoriteDTO> favorito;
+    private String ubicacion;
+
+    public EventDTO setUbicacion(String ubicacion){
+        this.ubicacion = ubicacion;
+        return this;
+    }
+
+    public String getUbicacion(){
+        return this.ubicacion;
+    }
 
     public EventDTO setFavorito(List<FavoriteDTO> favorites){
         this.favorito = favorites;
@@ -166,6 +176,7 @@ public class EventDTO{
                 setPermanente(event.getPermenente()).
                 setImagenes(imagesDto).
                 setTipoEvento(event.getTipoEvento()).
-                setFavorito(favoritesDTO);
+                setFavorito(favoritesDTO).
+                setUbicacion(event.getUbicacion());
     }
 }
