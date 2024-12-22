@@ -72,7 +72,7 @@ public class UserServiceImplement implements UserService{
             userN.setPreferences(pref);
             return this.userRepository.save(userN);
         }
-        return user;
+        return null;
     }
 
     @Override
