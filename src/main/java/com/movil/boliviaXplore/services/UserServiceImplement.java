@@ -57,16 +57,16 @@ public class UserServiceImplement implements UserService{
     }
 
     @Override
-    public User createUser(String name, String email, String urlFoto, String googleId, String authProvider){
+    public User createUser(String name, String email, String urlFoto, String password){
         User user = this.userRepository.findByCorreoUsuario(email);
-        if(user == null){
+        if(user != null){
             user = new User();
             user.setNombreUsuario(name);
             user.setCorreoUsuario(email);
-            user.setPassword(email);
+            user.setPassword(password);
             user.setFotoUsuario(urlFoto);
-            user.setGoogleId(googleId);
-            user.setAuthProvider(authProvider);
+            user.setGoogleId(null);
+            user.setAuthProvider(null);
             User userN = this.userRepository.save(user);
             Preferences pref = this.preferencesRepository.save(new Preferences(userN)); 
             userN.setPreferences(pref);

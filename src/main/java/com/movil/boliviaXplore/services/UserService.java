@@ -14,8 +14,7 @@ public interface UserService{
         String name,
         String email,
         String urlFoto,
-        String goodleId,
-        String authProvider
+        String password
     );
     void updatePreferences(Preferences preferences);
     Optional<User> getUserByEmailAndPassword(String email, String password);

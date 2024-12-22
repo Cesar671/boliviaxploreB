@@ -28,13 +28,16 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody Map<String, Object> entity) {
         String name =  entity.get("name").toString();
         String email = entity.get("email").toString();
-        String urlFoto = entity.get("urlFoto").toString();
-        String googleId = entity.get("googleID").toString();
-        String authProvider = entity.get("authProvider").toString();
+        String urlFoto = "";
+        String password = entity.get("password").toString();
 
-        User user = this.userServiceImplement.createUser(name, email, urlFoto, googleId, authProvider);
-
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        User user = this.userServiceImplement.createUser(name, email, urlFoto, password);
+        if(user != null){
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        
     }
 
     @PutMapping("/updatepreferences")
