@@ -59,7 +59,7 @@ public class UserServiceImplement implements UserService{
     @Override
     public User createUser(String name, String email, String urlFoto, String password){
         User user = this.userRepository.findByCorreoUsuario(email);
-        if(user != null){
+        if(user == null){
             user = new User();
             user.setNombreUsuario(name);
             user.setCorreoUsuario(email);
