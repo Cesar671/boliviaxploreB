@@ -60,7 +60,7 @@ public class User {
     private Preferences preferences;
 
     public void setPassword(String password){
-        this.password = password;//new BCryptPasswordEncoder().encode(password);
+        this.password = password;
     }
 
     public String getPassword(){

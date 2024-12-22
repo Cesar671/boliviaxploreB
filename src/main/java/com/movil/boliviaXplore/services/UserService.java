@@ -5,7 +5,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.models.User;
 import com.movil.boliviaXplore.models.Preferences;
-
+import java.util.Optional;
 public interface UserService{
     List<Event> getAllFavorites(long codUsuario);
     GoogleIdToken.Payload verifyGoogleIdToken(String idToken);
@@ -18,4 +18,5 @@ public interface UserService{
         String authProvider
     );
     void updatePreferences(Preferences preferences);
+    Optional<User> getUserByEmailAndPassword(String email, String password);
 }

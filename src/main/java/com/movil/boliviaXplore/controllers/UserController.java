@@ -2,6 +2,7 @@ package com.movil.boliviaXplore.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ import com.movil.boliviaXplore.services.UserServiceImplement;
 import org.springframework.web.bind.annotation.PutMapping;
 import com.movil.boliviaXplore.models.Preferences;
 
-
+import java.util.Optional;
 @Controller
 @RequestMapping("/api/user")
 public class UserController {
@@ -60,4 +61,16 @@ public class UserController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> postMethodName(@RequestBody Map<String, Object> payload) {
+        String email = payload.get("email").toString();
+        String password = payload.get("password").toString();
+        Optional<User> userOptional = this.userServiceImplement.getUserByEmailAndPassword(email, password);
+        if(userOptional.isPresent()){
+            return new ResponseEntity<>(userOptional.get(), HttpStatus.OK);
+        } 
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+    
 }

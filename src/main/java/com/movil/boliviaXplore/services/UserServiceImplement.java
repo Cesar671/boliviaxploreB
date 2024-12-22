@@ -15,7 +15,7 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.movil.boliviaXplore.models.Event;
 import com.movil.boliviaXplore.models.Preferences;
 import com.movil.boliviaXplore.models.User;
-
+import java.util.Optional;
 @Service
 public class UserServiceImplement implements UserService{
 
@@ -86,6 +86,12 @@ public class UserServiceImplement implements UserService{
             p.setNotificationRecomendation(preferences.getNotificationsRecomendation());
             return this.preferencesRepository.save(p);
         });
+    }
+
+    @Override
+    public Optional<User> getUserByEmailAndPassword(String email, String password) {
+        Optional<User> user = this.userRepository.findByCorreoUsuarioAndPassword(email, password);
+        return user;
     }
     
 }
