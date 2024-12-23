@@ -721,6 +721,7 @@ public class DataLoader implements ApplicationRunner{
         event.setLatitud(latitud);  
         event.setHistoriaEvento(historiaEvento); 
         event.setTipoEvento(tipoEvento); 
+        event.setUbicacion("cochabamba - Bolivia");
         try{
             event.setFechaInicioEvento(Date.from(a.atStartOfDay(ZoneId.systemDefault()).toInstant()));
             event.setFechaFinEvento(Date.from(b.atStartOfDay(ZoneId.systemDefault()).toInstant()));
