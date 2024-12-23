@@ -215,8 +215,8 @@ public class EventController {
     }
   
     @GetMapping("/days-in-month/{year}/{month}")
-    public ResponseEntity<Map<Integer, List<Event>>> getEventDaysInMonth(@PathVariable("year") int year, @PathVariable("month") int month) {
-        Map<Integer, List<Event>> days = eventServiceImplement.getEventDaysInMonth(year, month);
+    public ResponseEntity<Map<Integer, List<EventDTO>>> getEventDaysInMonth(@PathVariable("year") int year, @PathVariable("month") int month) {
+        Map<Integer, List<EventDTO>> days = eventServiceImplement.getEventDaysInMonth(year, month);
         return ResponseEntity.ok(days);
     }
 

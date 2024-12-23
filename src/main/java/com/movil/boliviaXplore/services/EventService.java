@@ -13,7 +13,7 @@ public interface EventService {
     void deleteEvent(long codEvent) throws IOException;
     Event getEvent(Long id);
     List<Event> getAllEvents();
-    Map<Integer, List<Event>> getEventDaysInMonth(int year, int month);
+    Map<Integer, List<EventDTO>> getEventDaysInMonth(int year, int month);
     Event updateEvent(Event event);
     void updateImages(List<MultipartFile> files, long idEvent) throws IOException;
     List<EventDTO> getAllEventToMap();

@@ -184,7 +184,7 @@ public class EventServiceImplement implements EventService {
     }
 
     @Override
-    public Map<Integer, List<Event>> getEventDaysInMonth(int year, int month){
+    public Map<Integer, List<EventDTO>> getEventDaysInMonth(int year, int month){
         LocalDate startDate = LocalDate.of(year, month, 1);
         LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
         Filter filterByNorPerment = new FilterByNotPermanent();
@@ -198,7 +198,7 @@ public class EventServiceImplement implements EventService {
 
         // Extraer los días únicos
         Set<Integer> days = new HashSet<>();
-        Map<Integer, List<Event>> eventosPorDia = new HashMap<>();
+        Map<Integer, List<EventDTO>> eventosPorDia = new HashMap<>();
 
         for (Event event : events) {
             // Convertir las fechas de inicio y fin del evento a LocalDate
@@ -225,7 +225,7 @@ public class EventServiceImplement implements EventService {
                     eventosPorDia.computeIfAbsent(dia, k -> new LinkedList<>());
 
                     // Agregar el evento a la lista del día correspondiente
-                    eventosPorDia.get(dia).add(event);
+                    eventosPorDia.get(dia).add(EventDTO.getInstance(event));
                 }
 
                 // Avanzar al siguiente día
