@@ -71,6 +71,7 @@ public class EventServiceImplement implements EventService {
             e.setTipoEvento(tipoEvento);
             e.setCategory(category);
             e.setUbicacion(eventNewData.getUbicacion());
+            e.setPermanente(eventNewData.getPermenente());
             return eventRepository.save(e);
         }).get();
         return eventMatched;
